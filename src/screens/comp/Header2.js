@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View, Image } from 'react-native'
 import React from 'react'
 import Client from '../../components/Client'
-import { Roboto_100Thin, Roboto_900Black } from '@expo-google-fonts/roboto'
 
 
-export default function Header() {
+
+export default function Header2() {
   return (
     <View style={styles.header}>
         {/* icon */}
@@ -16,10 +16,10 @@ export default function Header() {
             <View style={styles.headerCentral}>
 
              <View style={styles.alt}>
-             <Text style={styles.headerText}>Regioes</Text>
+             <Text style={styles.headerText}>Leitura</Text>
              </View>
              <View style={styles.alt2}>
-             <Text style={styles.headerText2}>Leitura</Text> 
+             <Text style={styles.headerText2}>0001</Text> 
              </View>
 
              </View>
@@ -51,19 +51,20 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between'
     },
-    headerText2: {
-        fontWeight: 'bold',
-        fontSize: 20,
-        color: '#fff',
-        fontFamily: 'Roboto_100Thin',
-    },
-
     headerText: {
         fontWeight: 'bold',
         fontSize: 20,
         color: '#fff',
         fontFamily: 'Roboto_900Black',
     },
+
+    headerText2: {
+        fontWeight: 'bold',
+        fontSize: 20,
+        color: '#fff',
+        fontFamily: 'Roboto_100Thin',
+    },
+    
 
     headerCentral: {
         flexDirection: 'row',
@@ -76,14 +77,14 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
         backgroundColor: '#03293A',
         padding: 20,
-        borderColor: '#0080BA',
+        borderColor: '#FFA21A',
         borderRadius: 40,
         borderWidth: 0.3
     },
     alt2: {
         flexDirection: 'row',
         justifyContent: 'space-evenly',
-        backgroundColor: '#0080BA',
+        backgroundColor: '#FFA21A',
         padding: 20,
         borderRadius: 40,
     }
