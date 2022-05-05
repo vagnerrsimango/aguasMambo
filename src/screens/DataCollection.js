@@ -2,13 +2,22 @@ import { StyleSheet, Text, View, Image } from 'react-native'
 import React from 'react'
 import Header from '../screens/comp/Header'
 import Client from '../components/Client'
-import { borderRightColor } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes'
+import { useNavigation } from '@react-navigation/native'
 
 const DataCollection = () => {
+
+  const navigation = useNavigation()
+
+    const retornar =()=> {
+    navigation.goBack()
+    }
+
+  
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Header/>
+        <Header retornar={retornar}/>
       </View>
       {/* <Client/> */}
       <View style={styles.body}>
