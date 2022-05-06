@@ -1,9 +1,6 @@
-import { StatusBar } from 'expo-status-bar';
+
 import { StyleSheet, Text, View } from 'react-native';
-import LoginScreen from './src/screens/LoginScreen';
-import LoginScreen2 from './src/screens/LoginScreen2';
-import DataCollection from './src/screens/DataCollection';
-import DetailClient from './src/screens/DetailClient';
+
 import {
   useFonts,
   Roboto_100Thin,
@@ -20,9 +17,18 @@ import {
   Roboto_900Black_Italic,
 } from '@expo-google-fonts/roboto';
 import AppLoading from 'expo-app-loading';
+import DetailClient from './src/screens/DetailClient';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Routes from './src/routes';
+import AuthProvider from './src/services/AuthProvider';
+
+
 
 
 export default function App() {
+  const Stack = createNativeStackNavigator()
+
   let [loaded]= useFonts({
     Roboto_100Thin, Roboto_900Black,
   })
@@ -30,7 +36,10 @@ export default function App() {
     return <AppLoading/>
   }
   return (
-   <DetailClient />
+  <AuthProvider>
+    <Routes/>
+  </AuthProvider>
+  
   )}
 
 

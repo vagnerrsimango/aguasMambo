@@ -1,22 +1,29 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
-import Client from '../../components/Client'
-import { Roboto_100Thin, Roboto_900Black } from '@expo-google-fonts/roboto'
+import { useNavigation } from '@react-navigation/native'
 
 
-export default function Header() {
+
+
+
+export default function Header({retornar}) {
+
+    
+
   return (
     <View style={styles.header}>
         {/* icon */}
       
-            
+           <TouchableOpacity onPress={retornar} >
             <Image style={styles.itemImage} source={require('../comp/menu.png')} />
-
+            </TouchableOpacity>
 
             <View style={styles.headerCentral}>
 
              <View style={styles.alt}>
+                 
              <Text style={styles.headerText}>Regioes</Text>
+               
              </View>
              <View style={styles.alt2}>
              <Text style={styles.headerText2}>Leitura</Text> 
@@ -67,8 +74,6 @@ const styles = StyleSheet.create({
 
     headerCentral: {
         flexDirection: 'row',
-        
-
     },
 
     alt: {
@@ -80,6 +85,7 @@ const styles = StyleSheet.create({
         borderRadius: 40,
         borderWidth: 0.3
     },
+
     alt2: {
         flexDirection: 'row',
         justifyContent: 'space-evenly',

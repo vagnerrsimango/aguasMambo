@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image,ScrollView } from 'react-native';
 import { color } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes';
 
-const Client = (props) => {
+const Client = ({client}) => {
 
   return (
     <View style={styles.item}>
@@ -18,8 +18,8 @@ const Client = (props) => {
         <Image style={styles.itemImage} source={require('../img/Vector.png')} />
 
         <View style={styles.contentWrapper}>
-          <Text style={styles.itemText}>LBD001</Text>
-          <Text style={styles.itemTextSmall}>845209961</Text>
+          <Text style={styles.itemText}>{client.item.name}</Text>
+          <Text style={styles.itemTextSmall}>{client.item.phone}</Text>
         </View>
 
         <View style={styles.settings}>
@@ -30,60 +30,8 @@ const Client = (props) => {
 
         </View>
 
-        {/* Cliente */}
-        <View style={styles.itemWrapperStyle}>
+  
 
-        <Image style={styles.itemImage} source={require('../img/Vector.png')} />
-
-        <View style={styles.contentWrapper}>
-          <Text style={styles.itemText}>LBD001</Text>
-          <Text style={styles.itemTextSmall}>845209961</Text>
-        </View>
-
-        <View style={styles.settings}>
-          <TouchableOpacity placeholder="Settings">
-          <Image style={styles.itemImage} source={require('../img/settings.png')} />
-          </TouchableOpacity>
-        </View>
-
-        </View>
-
-        {/* Cliente */}
-        <View style={styles.itemWrapperStyle}>
-
-        <Image style={styles.itemImage} source={require('../img/Vector.png')} />
-
-        <View style={styles.contentWrapper}>
-          <Text style={styles.itemText}>LBD001</Text>
-          <Text style={styles.itemTextSmall}>845209961</Text>
-        </View>
-
-        <View style={styles.settings}>
-          <TouchableOpacity placeholder="Settings">
-          <Image style={styles.itemImage} source={require('../img/settings.png')} />
-          </TouchableOpacity>
-        </View>
-
-        </View>
-
-        {/* Cliente */}
-        <View style={styles.itemWrapperStyle}>
-
-        <Image style={styles.itemImage} source={require('../img/Vector.png')} />
-
-        <View style={styles.contentWrapper}>
-          <Text style={styles.itemText}>LBD001</Text>
-          <Text style={styles.itemTextSmall}>845209961</Text>
-        </View>
-
-        <View style={styles.settings}>
-          <TouchableOpacity placeholder="Settings">
-            {/* <Text style={{color: '#fff'}}>Settings</Text> */}
-            <Image style={styles.itemImage} source={require('../img/settings.png')} />
-          </TouchableOpacity>
-        </View>
-
-        </View>
 
     
      

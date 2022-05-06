@@ -1,18 +1,55 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View, Image, FlatList } from 'react-native'
+import React, { useEffect, useState } from 'react'
 import Header from '../screens/comp/Header'
 import Client from '../components/Client'
-import { borderRightColor } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes'
+import { useNavigation } from '@react-navigation/native'
+
+
 
 const DataCollection = () => {
+
+  const [client,setClient] = useState()
+
+  useEffect(()=> {
+
+      setClient([{
+        
+        name:"Elton",
+        phone:"123456767"
+      },{
+        name:"Vagner",
+        phone:"123456767"
+      },{
+        name:"Vagner",
+        phone:"123456767"
+      }])
+  
+  },[])
+  const navigation = useNavigation()
+
+    const retornar =()=> {
+    navigation.goBack()
+    }
+
+  
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Header  title="Vagnerx"/>
+        <Header retornar={retornar}/>
       </View>
       {/* <Client/> */}
       <View style={styles.body}>
-        <Client />
+
+
+      <FlatList 
+      data={client}
+      renderItem={(item)=> <Client  client={item}/>}
+      key={(item)=>item.phone}
+      
+      
+      />
+       
       </View>
 
       <Image style={styles.gota1} source={require('../img/bg1.png')} />
@@ -29,7 +66,6 @@ const DataCollection = () => {
   )
 }
 
-export default DataCollection
 
 const styles = StyleSheet.create({
   container: {
@@ -79,3 +115,6 @@ const styles = StyleSheet.create({
   }
 
 })
+
+
+export default DataCollection

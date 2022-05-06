@@ -1,9 +1,42 @@
-import { StyleSheet, useState, useEffect, Text, View, KeyboardAvoidingView, Image, TextInput, TouchableOpacity, Animated} from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View, KeyboardAvoidingView, Image, TextInput, TouchableOpacity, Animated} from 'react-native'
+import React, {useState, useEffect, useContext} from 'react'
+import { useNavigation } from '@react-navigation/native'
+import api from '../services/api'
+import { loginValidator } from '../controller/AuthController'
+import { UserContext } from '../services/Context'
+
+
 
 
 
 const LoginScreen = () => {
+
+    const navigation = useNavigation()
+    const [username, setUsername] = useState()
+    const {setUser}=useContext(UserContext)
+    const makeLogin = async()=> {
+        if (loginValidator(username)===true){
+            try {
+                const response = await api.post('/login', {
+                    name: username  
+            })
+            
+            setUser(response.data)
+                
+            } catch (error) {
+                alert('Falha ao autenticar, verifique a conexao')
+                
+            }
+        } else {
+            alert('Por favor preencha o campo de nome do utilizador')
+        }
+        
+        
+        
+
+    }
+
+    
 
    
   return (
@@ -19,9 +52,9 @@ const LoginScreen = () => {
         </View>
 
         <View style={styles.container}> 
-            <TextInput style={styles.input} placeholder="Utilizador/Contacto" onChangeText={()=> {}}/>
+            <TextInput style={styles.input} placeholder="Utilizador/Contacto" placeholderTextColor={'grey'} onChangeText={(text)=>setUsername(text)}/>
             
-            <TouchableOpacity style={styles.btnSubmit}>
+            <TouchableOpacity style={styles.btnSubmit} onPress={makeLogin}>
                 <Text style={styles.submitText}>Entrar</Text>
             </TouchableOpacity>
 
@@ -70,13 +103,14 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
       width: '90%',
-      paddingBottom: 50
+      paddingBottom: 50,
   },
   input: {
       backgroundColor: '#fff',
       width: '90%',
+      color: 'black',
       marginBottom: 15,
-      color: 'rgba(255,255,255,0.3)',
+      color: 'black',
       fontSize: 17,
       borderRadius: 7,
       padding: 10,
