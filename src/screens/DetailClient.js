@@ -87,8 +87,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#F2F2F2',
     borderTopLeftRadius: 60,
     borderTopRightRadius: 60,
-    borderBottomLeftRadius: 60,
-    borderBottomRightRadius: 60,
+    // borderBottomLeftRadius: 60,
+    // borderBottomRightRadius: 60,
     alignItems: 'center',
     justifyContent: 'flex-start'
 

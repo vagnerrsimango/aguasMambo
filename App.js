@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import LoginScreen from './src/screens/LoginScreen';
 import LoginScreen2 from './src/screens/LoginScreen2';
 import DataCollection from './src/screens/DataCollection';
+import DetailClient from './src/screens/DetailClient';
 import {
   useFonts,
   Roboto_100Thin,
@@ -19,7 +20,6 @@ import {
   Roboto_900Black_Italic,
 } from '@expo-google-fonts/roboto';
 import AppLoading from 'expo-app-loading';
-import DetailClient from './src/screens/DetailClient';
 
 
 export default function App() {
@@ -30,7 +30,7 @@ export default function App() {
     return <AppLoading/>
   }
   return (
-   <DetailClient/>
+   <DetailClient />
   )}
 
 

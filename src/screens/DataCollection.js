@@ -8,7 +8,7 @@ const DataCollection = () => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Header/>
+        <Header  title="Vagnerx"/>
       </View>
       {/* <Client/> */}
       <View style={styles.body}>
