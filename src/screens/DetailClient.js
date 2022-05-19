@@ -1,48 +1,90 @@
 import { StyleSheet, Text, View, TextInput, Image, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, {useEffect,useState}  from 'react'
 import Header2 from './comp/Header2'
+import { useNavigation } from '@react-navigation/native'
 import { Roboto_100Thin, Roboto_900Black } from '@expo-google-fonts/roboto'
 
 
-const DetailClient = () => {
+const DetailClient = ({route}) => {
+  const [userInfo, setUserInfo] = useState()
+  const [leitura, setLeitura] = useState(0)
+  const [oldLeitura, setOldLeitura] = useState(0)
+  const [value, setValue] = useState(0)
+
+  const addLeitura = (add)=>{
+    setLeitura(add)
+   }
+
+  const addLeitura2=(add)=>{
+    setOldLeitura(add)
+  }
+  
+  
+
+  const convertMetical = ()=>{
+    if (leitura>oldLeitura){
+      setValue(25.5 * leitura)
+    } else{
+      alert('A nova fatura deve ser superior a anterior!')
+    } 
+    
+  }
+
+
+
+
+
+  
+  useEffect(()=>{
+    console.log(route.params.item)
+    setUserInfo(route.params.item)
+  },[])
+
+  const navigation = useNavigation()
+
+    const retornar =()=> {
+    navigation.goBack()
+    }
+
+
   return (
     <View style={styles.container}>
       <View styler={styles.header}>
-      <Header2 />
+      <Header2 retornar={retornar} />
       </View>
 
       <View style={styles.body}>
-        <TextInput style={styles.txtBox1} placeholder='Identificação' placeholderTextColor={'orange'}></TextInput>
-        <TextInput style={styles.txtBox2} placeholder='Leitura anterior' placeholderTextColor={'black'}></TextInput>
+        <TextInput style={styles.txtBox1} placeholder='Identificação' placeholderTextColor={'orange'} onChangeText={addLeitura}></TextInput>
+        <TextInput style={styles.txtBox2} placeholder='Leitura anterior' placeholderTextColor={'black'} onChangeText={addLeitura2}></TextInput>
         <TextInput style={styles.txtBox3} placeholder='Estado' placeholderTextColor={'black'}></TextInput> 
         
         <View style={styles.valuem3}>
 
 
         <View style={styles.alt}>
-             <Text style={styles.billText}>Valor em m3</Text>
+             <Text style={styles.billText}>{leitura} m3</Text>
         </View>
 
         <View style={styles.alt2}>
-             <Text style={styles.billText2}>150 Mts</Text> 
+             <Text style={styles.billText2}>{value} MZN</Text> 
         </View>
         </View>
         </View>
 
       <View style={styles.footer}>
-        <TouchableOpacity style={styles.btnLeitura}>
+        <TouchableOpacity style={styles.btnLeitura} onPress={convertMetical}>
           <Text style={styles.txtLeitura}>Leitura</Text>
         </TouchableOpacity>
 
         
-        <TouchableOpacity>
+        {/* <TouchableOpacity>
         <Image style={styles.agendaIMG} source={require('../img/agendar.png')} />
         </TouchableOpacity>
 
         <TouchableOpacity>
         <Image style={styles.settingsIMG} source={require('../img/settingsyellow.png')} />
         </TouchableOpacity>
-        
+         */}
         
 
    
@@ -176,11 +218,11 @@ const styles = StyleSheet.create({
     height: 56,
     width: 154,
     padding: 8,
-    position: 'absolute',
-    top: 0,
+    // position: 'absolute',
+    top: 8,
     left: 0,
     marginTop: 18,
-    marginLeft: 50,
+    // marginLeft: 50,
     borderRadius: 60,
 
   },

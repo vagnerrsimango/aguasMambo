@@ -1,10 +1,8 @@
-import { StyleSheet, Text, View, Image, FlatList } from 'react-native'
+import { StyleSheet, Text, View, Image, FlatList, ScrollView } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Header from '../screens/comp/Header'
 import Client from '../components/Client'
 import { useNavigation } from '@react-navigation/native'
-
-
 
 const DataCollection = () => {
 
@@ -13,7 +11,6 @@ const DataCollection = () => {
   useEffect(()=> {
 
       setClient([{
-        
         name:"Elton",
         phone:"123456767"
       },{
@@ -35,6 +32,7 @@ const DataCollection = () => {
 
   return (
     <View style={styles.container}>
+      <ScrollView>
       <View style={styles.header}>
         <Header retornar={retornar}/>
       </View>
@@ -44,7 +42,7 @@ const DataCollection = () => {
 
       <FlatList 
       data={client}
-      renderItem={(item)=> <Client  client={item}/>}
+      renderItem={(item)=> <Client  client={item} callScreen={()=>navigation.navigate('DetailClient',item)}/>}
       key={(item)=>item.phone}
       
       
@@ -52,6 +50,10 @@ const DataCollection = () => {
        
       </View>
 
+     
+      
+
+      </ScrollView> 
       <Image style={styles.gota1} source={require('../img/bg1.png')} />
       <View style={styles.imgGotas}>
       <Image style={styles.gota2} source={require('../img/waterdrop.png')} />
@@ -59,9 +61,6 @@ const DataCollection = () => {
       <Image style={styles.gota2} source={require('../img/waterdrop.png')} />
 
       </View>
-      
-
-      
     </View>
   )
 }

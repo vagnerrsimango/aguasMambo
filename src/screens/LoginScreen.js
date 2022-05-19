@@ -1,20 +1,19 @@
 import { StyleSheet, Text, View, KeyboardAvoidingView, Image, TextInput, TouchableOpacity, Animated} from 'react-native'
 import React, {useState, useEffect, useContext} from 'react'
+import ProgressDialog from 'react-native-progress-dialog';
 import { useNavigation } from '@react-navigation/native'
 import api from '../services/api'
 import { loginValidator } from '../controller/AuthController'
 import { UserContext } from '../services/Context'
 
-
-
-
-
 const LoginScreen = () => {
 
     const navigation = useNavigation()
     const [username, setUsername] = useState()
+    const [loading, isLoading] = useState(false)
     const {setUser}=useContext(UserContext)
     const makeLogin = async()=> {
+        isLoading(true)
         if (loginValidator(username)===true){
             try {
                 const response = await api.post('/login', {
@@ -25,10 +24,11 @@ const LoginScreen = () => {
                 
             } catch (error) {
                 alert('Falha ao autenticar, verifique a conexao')
-                
+                isLoading(false)
             }
         } else {
             alert('Por favor preencha o campo de nome do utilizador')
+            isLoading(false)
         }
         
         
@@ -40,8 +40,8 @@ const LoginScreen = () => {
 
    
   return (
-    <KeyboardAvoidingView style={styles.background}>
-
+    <KeyboardAvoidingView style={styles.background} behavior={Platform.OS === "ios" ? "padding" : "height"}>
+     <ProgressDialog visible={loading} label="Por favor aguarde!" loaderColor='#FF9800'/>
         <View style={styles.containerLogo}>
             <Image style={styles.img} source={require('../img/logoshadow.png')}/>
         </View>

@@ -2,16 +2,10 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image,ScrollView } from 'react-native';
 import { color } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes';
 
-const Client = ({client}) => {
+const Client = ({client, callScreen}) => {
 
   return (
-    <View style={styles.item}>
-      <ScrollView
-        contentContainerStyle={{
-          flexGrow: 1
-        }}
-        keyboardShouldPersistTaps='handled'
-      >
+    <TouchableOpacity style={styles.item} onPress={callScreen}>
         {/* Cliente */}
         <View style={styles.itemWrapperStyle}>
 
@@ -22,27 +16,14 @@ const Client = ({client}) => {
           <Text style={styles.itemTextSmall}>{client.item.phone}</Text>
         </View>
 
+
         <View style={styles.settings}>
           <TouchableOpacity placeholder="Settings">
           <Image style={styles.itemImage} source={require('../img/settings.png')} />
           </TouchableOpacity>
         </View>
-
-        </View>
-
-  
-
-
-    
-     
-      
-      
-
-      
-
-      
-      </ScrollView>
-    </View>
+        </View>      
+    </TouchableOpacity>
   )
 }
 
