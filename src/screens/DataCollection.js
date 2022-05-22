@@ -1,31 +1,42 @@
 import { StyleSheet, Text, View, Image, FlatList, ScrollView } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState,useContext } from 'react'
 import Header from '../screens/comp/Header'
 import Client from '../components/Client'
 import { useNavigation } from '@react-navigation/native'
+import { UserContext } from '../services/Context'
+import { AntDesign } from '@expo/vector-icons'; 
+import api from '../services/api'
+
 
 const DataCollection = () => {
 
   const [client,setClient] = useState()
+  const {user,setUser} = useContext(UserContext)
+  
+ 
 
   useEffect(()=> {
 
-      setClient([{
-        name:"Elton",
-        phone:"123456767"
-      },{
-        name:"Vagner",
-        phone:"123456767"
-      },{
-        name:"Vagner",
-        phone:"123456767"
-      }])
+  async function getZone() {
+    const response = await api.get('/connect',{
+      headers: {
+        'Authorization': `Bearer ${user.token}` 
+      }
+    })
+
+   setClient(response.data.response.data)
+
+  }
+
+  getZone()
+  console.log('user do contexto=>',user)
+  
   
   },[])
   const navigation = useNavigation()
 
     const retornar =()=> {
-    navigation.goBack()
+    setUser(null)
     }
 
   

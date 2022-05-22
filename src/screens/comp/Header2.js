@@ -1,16 +1,18 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import Client from '../../components/Client'
+import { AntDesign } from '@expo/vector-icons';
 
 
 
-export default function Header2() {
+export default function Header2({retornar}) {
   return (
     <View style={styles.header}>
         {/* icon */}
-      
-            
-            <Image style={styles.itemImage} source={require('../comp/menu.png')} />
+
+            <TouchableOpacity onPress={retornar} >
+             <AntDesign name="logout" size={28} color="white" />
+            </TouchableOpacity>
 
 
             <View style={styles.headerCentral}>

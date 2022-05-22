@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { useNavigation } from '@react-navigation/native'
-
+import { AntDesign } from '@expo/vector-icons'; 
 
 
 
@@ -15,7 +15,7 @@ export default function Header({retornar}) {
         {/* icon */}
       
            <TouchableOpacity onPress={retornar} >
-            <Image style={styles.itemImage} source={require('../comp/menu.png')} />
+           <AntDesign name="logout" size={28} color="white" />
             </TouchableOpacity>
 
             <View style={styles.headerCentral}>

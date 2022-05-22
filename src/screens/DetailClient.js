@@ -80,7 +80,6 @@ const DetailClient = ({route}) => {
         {/* <TouchableOpacity>
         <Image style={styles.agendaIMG} source={require('../img/agendar.png')} />
         </TouchableOpacity>
-
         <TouchableOpacity>
         <Image style={styles.settingsIMG} source={require('../img/settingsyellow.png')} />
         </TouchableOpacity>
