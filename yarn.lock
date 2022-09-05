@@ -4691,6 +4691,11 @@ react-native-codegen@^0.0.6:
     jscodeshift "^0.11.0"
     nullthrows "^1.1.1"
 
+react-native-phone-call@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-phone-call/-/react-native-phone-call-1.2.0.tgz#11c28120f9528647167b58742ebb7225f52d28c1"
+  integrity sha512-M1CiocX8w7YNsh3Cwcnwc3eUkIJOPaBIQji3P9Uv/ZWAwb6XGI2NtV2UBSAa4Prvn6ooXeFPZs/YXmeTHmVHKg==
+
 react-native-progress-dialog@^0.0.5:
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/react-native-progress-dialog/-/react-native-progress-dialog-0.0.5.tgz#3a6b90255fbe205fdc401d8ffdf8befc4422c6de"

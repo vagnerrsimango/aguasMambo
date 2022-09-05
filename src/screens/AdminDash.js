@@ -1,19 +1,33 @@
-import { StyleSheet, Text, View, Image, FlatList, ScrollView } from 'react-native'
+import { StyleSheet, Text, View, Image, FlatList, ScrollView, TouchableOpacity } from 'react-native'
 import React, { useEffect, useState,useContext } from 'react'
-import Header from '../screens/comp/Header'
-import Client from '../components/Client'
+import HeaderAdmin from './comp/HeaderAdmin'
 import { useNavigation } from '@react-navigation/native'
 import { UserContext } from '../services/Context'
 import { AntDesign } from '@expo/vector-icons'; 
 import api from '../services/api'
+import Card from '../components/Card'
 
 
-const DataCollection = () => {
 
-  // const [client,setClient] = useState()
+
+
+const AdminDash = () => {
+
   const {user,setUser} = useContext(UserContext)
   
- 
+  const zones = [
+    {name: 'Alto-Mae', houses: 5, key: '1'},
+    {name: 'Matola Gare', houses: 3, key: '2'},
+    {name: 'Hulene', houses: 8, key: '3'},
+  ]
+
+  const client=[{
+    casa: 30,
+    cliente: 'Victor'}, 
+   {casa: 60,
+   cliente: 'Victor2'
+  }]
+
 
   useEffect(()=> {
 
@@ -39,28 +53,22 @@ const DataCollection = () => {
     setUser(null)
     }
 
-    const client=[{
-      casa: 30,
-      cliente: 'Victor'}, 
-     {casa: 60,
-     cliente: 'Victor2'
-    }]
-
+   
   
 
   return (
     <View style={styles.container}>
       <ScrollView>
       <View style={styles.header}>
-        <Header retornar={retornar}/>
+        <HeaderAdmin retornar={retornar}/>
       </View>
       {/* <Client/> */}
       <View style={styles.body}>
 
 
       <FlatList
-      data={client}
-      renderItem={(item)=> <Client client={item} callScreen={()=>navigation.navigate('DetailClient',item)}/>}
+      data={zones}
+      renderItem={(item)=> <Card zones={item} callScreen={()=>navigation.navigate('DataCollection',item)}/>}
       key={(item)=>item.phone}
       
       
@@ -134,4 +142,4 @@ const styles = StyleSheet.create({
 })
 
 
-export default DataCollection
+export default AdminDash

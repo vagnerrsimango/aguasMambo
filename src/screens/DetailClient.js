@@ -11,7 +11,11 @@ const DetailClient = ({route}) => {
   const [oldLeitura, setOldLeitura] = useState(0)
   const [value, setValue] = useState(0)
 
-  const addLeitura = (add)=>{
+  const addLeituraM3 = (add)=>{
+    setLeitura(add)
+   }
+
+   const addLeituraMT = (add)=>{
     setLeitura(add)
    }
 
@@ -19,8 +23,6 @@ const DetailClient = ({route}) => {
     setOldLeitura(add)
   }
   
-  
-
   const convertMetical = ()=>{
     if (leitura>oldLeitura){
       setValue(25.5 * leitura)
@@ -30,15 +32,17 @@ const DetailClient = ({route}) => {
     
   }
 
+  
+
 
 
 
 
   
-  useEffect(()=>{
-    console.log(route.params.item)
-    setUserInfo(route.params.item)
-  },[])
+  // useEffect(()=>{
+  //   console.log(route.params.item)
+  //   setUserInfo(route.params.item)
+  // },[])
 
   const navigation = useNavigation()
 
@@ -54,8 +58,10 @@ const DetailClient = ({route}) => {
       </View>
 
       <View style={styles.body}>
-        <TextInput style={styles.txtBox1} placeholder='Identificação' placeholderTextColor={'orange'} onChangeText={addLeitura}></TextInput>
+        <TextInput style={styles.txtBox1} placeholder='Identificação' placeholderTextColor={'orange'}></TextInput>
         <TextInput style={styles.txtBox2} placeholder='Leitura anterior' placeholderTextColor={'black'} onChangeText={addLeitura2}></TextInput>
+        <TextInput style={styles.txtBox2} placeholder='Nova Leitura (metros cúbicos)' placeholderTextColor={'black'} onChangeText={addLeituraM3}></TextInput>
+        <TextInput style={styles.txtBox2} placeholder='Nova Leitura (meticais)' placeholderTextColor={'black'} onChangeText={addLeituraMT}></TextInput>
         <TextInput style={styles.txtBox3} placeholder='Estado' placeholderTextColor={'black'}></TextInput> 
         
         <View style={styles.valuem3}>
@@ -274,11 +280,6 @@ alt2: {
     right: 0,
     width: 15,
     height: 25
-// width: 15px;
-// height: 25px;
-// left: 319px;
-// top: 760.32px;
-
 
   },
 

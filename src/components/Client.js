@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   },
 
   contentWrapper: {
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     marginLeft: 10 
   },
 

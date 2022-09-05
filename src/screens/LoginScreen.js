@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View, KeyboardAvoidingView, Image, TextInput, TouchableOpacity, Animated} from 'react-native'
 import React, {useState, useEffect, useContext} from 'react'
+import call from 'react-native-phone-call'
 import ProgressDialog from 'react-native-progress-dialog';
 import { useNavigation } from '@react-navigation/native'
 import api from '../services/api'
@@ -9,9 +10,13 @@ import { UserContext } from '../services/Context'
 const LoginScreen = () => {
 
     const navigation = useNavigation()
+    const [margem, setMargem] = useState(new Animated.Value(0))
     const [username, setUsername] = useState()
     const [loading, isLoading] = useState(false)
     const {setUser}=useContext(UserContext)
+    
+    
+    
     const makeLogin = async()=> {
         isLoading(true)
         if (loginValidator(username)===true){
@@ -30,11 +35,30 @@ const LoginScreen = () => {
             alert('Por favor preencha o campo de nome do utilizador')
             isLoading(false)
         }
-        
-        
-        
-
+                
+ 
     }
+
+    const triggerCall = ()=> {
+        const args = {
+            number: '+258846805329',
+            prompt: true,
+            skipCanOpen: true
+          }
+        //Fazer a chamada
+          call(args).catch(console.error)
+    }
+
+    Animated.timing(
+        margem,
+        {
+            toValue: 100,
+            duration: 1000,
+            
+        }
+    ).start();
+        
+  
 
     
 
@@ -42,9 +66,12 @@ const LoginScreen = () => {
   return (
     <KeyboardAvoidingView style={styles.background} behavior={Platform.OS === "ios" ? "padding" : "height"}>
      <ProgressDialog visible={loading} label="Por favor aguarde!" loaderColor='#FF9800'/>
-        <View style={styles.containerLogo}>
+        <Animated.View style={{
+            justifyContent: 'center',
+            marginTop: margem,
+        }}>
             <Image style={styles.img} source={require('../img/logoshadow.png')}/>
-        </View>
+        </Animated.View>
 
         <View style={styles.shadow}>
         <Image style={styles.imgShadow} source={require('../img/mainBackground.png')}/>
@@ -58,7 +85,7 @@ const LoginScreen = () => {
                 <Text style={styles.submitText}>Entrar</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.contact}>
+            <TouchableOpacity style={styles.contact} onPress={triggerCall}>
                 <Text style={styles.contactTxt}>Contactar Administrador</Text>
             </TouchableOpacity>
         </View>
@@ -77,8 +104,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff'
   },
   containerLogo: {
-      justifyContent: 'center',
-      marginTop: 150,
+      
   },
 
   img: {
