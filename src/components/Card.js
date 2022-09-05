@@ -6,13 +6,7 @@ import { color } from 'react-native/Libraries/Components/View/ReactNativeStyleAt
 
 const Card = ({client, callScreen}) => {
     return (
-    // const zones = [
-    //     {name: 'Alto-Mae', houses: 5, key: '1'},
-    //     {name: 'Matola Gare', houses: 3, key: '2'},
-    //     {name: 'Hulene', houses: 8, key: '3'},
-    // ]
-
-     
+  
     <TouchableOpacity style={styles.item} onPress={callScreen}>
         {/* Cliente */}
         <View style={styles.itemWrapperStyle}>
@@ -25,7 +19,6 @@ const Card = ({client, callScreen}) => {
         </View>
 
         <AntDesign name="enter" style={styles.arrow} size={40} color="#0080BA" />
-
 
         </View>      
     </TouchableOpacity>
@@ -64,14 +57,14 @@ const styles = StyleSheet.create({
   itemText: {
     fontSize: 24,
     color: 'black',
-    fontFamily: 'Roboto_30Black',
+    fontFamily: 'Roboto_90Black',
     marginLeft: 12,
   },
 
   itemTextSmall: {
     color:'grey',
     fontSize: 20,
-    fontFamily: 'Roboto_900Black',
+    fontFamily: 'Roboto_90Black',
     marginLeft: 12,
     marginBottom: 8
   },

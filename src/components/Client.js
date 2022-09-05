@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
-import { AntDesign, FontAwesome5 } from '@expo/vector-icons';
+import { AntDesign, FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons';
 import { color } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes';
 
 
@@ -11,7 +11,7 @@ const Client = ({client, callScreen}) => {
         {/* Cliente */}
         <View style={styles.itemWrapperStyle}>
 
-        <AntDesign name="contacts" size={48} color="black" />
+        <MaterialCommunityIcons name="contacts" size={40} color="#0080BA" style={styles.contact}/>
 
         <View style={styles.contentWrapper}>
           <Text style={styles.itemText}>{client.item.casa}</Text>
@@ -32,16 +32,27 @@ const Client = ({client, callScreen}) => {
 const styles = StyleSheet.create({
   itemWrapperStyle: {
     flexDirection: 'row',
-    marginHorizontal: 20,
-    marginVertical: 15,
-    borderBottomWidth: 1,
+    alignItems: 'center',
+    borderBottomWidth: 2,
     borderColor: '#ddd',
-    borderRadius: 100
+    borderRadius: 15,
+    shadowOffset: { width: 1, height: 1 },
+    shadowColor: '#333',
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    marginHorizontal: 10,
+    marginVertical: 10,
+    elevation: 1,  
   },
   itemImage: {
     width: 20,
     height: 20,
     marginRight: 16,
+  },
+
+  contact: { 
+      marginLeft: 12,
+      marginTop: 2, 
   },
 
   contentWrapper: {
@@ -50,16 +61,19 @@ const styles = StyleSheet.create({
   },
 
   itemText: {
-    fontSize: 20,
-    color: '#0080BA',
-    fontFamily: 'Roboto_900Black'
+    fontSize: 24,
+    color: 'black',
+    fontFamily: 'Roboto_30Black',
+    marginLeft: 12,
 
   },
 
   itemTextSmall: {
     color:'grey',
-    fontSize: 18,
-    fontFamily: 'Roboto_900Black'
+    fontSize: 20,
+    fontFamily: 'Roboto_900Black',
+    marginLeft: 12,
+    marginBottom: 8
   },
 
   settings: {

@@ -59,17 +59,17 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between'
     },
     headerText2: {
-        fontWeight: 'bold',
-        fontSize: 20,
+        fontSize: 24,
         color: '#fff',
-        fontFamily: 'Roboto_100Thin',
+        textTransform: 'uppercase',
+        fontFamily: 'Roboto_300Thin',
     },
 
     headerText: {
-        fontWeight: 'bold',
-        fontSize: 20,
+        fontSize: 24,
         color: '#fff',
-        fontFamily: 'Roboto_900Black',
+        textTransform: 'uppercase',
+        fontFamily: 'Roboto_300Thin',
     },
 
     headerCentral: {
