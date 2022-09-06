@@ -1,79 +1,82 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
-import { AntDesign, FontAwesome5 } from '@expo/vector-icons';
+import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
 import { color } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes';
 
-
-const Card = ({client, callScreen}) => {
-    return (
-  
+const Card = ({ client, callScreen }) => {
+  return (
     <TouchableOpacity style={styles.item} onPress={callScreen}>
-        {/* Cliente */}
-        <View style={styles.itemWrapperStyle}>
-
-        <AntDesign name="home" size={40} color="#0080BA" style={styles.home}/>
+      {/* Cliente */}
+      <View style={styles.itemWrapperStyle}>
+        <MaterialCommunityIcons
+          name="home"
+          size={36}
+          color="#0080BA"
+          style={styles.home}
+        />
 
         <View style={styles.contentWrapper}>
           <Text style={styles.itemText}>Alto Mae</Text>
           <Text style={styles.itemTextSmall}>6 Casas</Text>
         </View>
 
-        <AntDesign name="enter" style={styles.arrow} size={40} color="#0080BA" />
-
-        </View>      
+        <AntDesign
+          name="reload1"
+          style={styles.arrow}
+          size={20}
+          color="#0080BA"
+        />
+      </View>
     </TouchableOpacity>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   itemWrapperStyle: {
+    width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
-    borderBottomWidth: 2,
+    borderBottomWidth: 1.4,
     borderColor: '#ddd',
     borderRadius: 15,
     shadowOffset: { width: 1, height: 1 },
     shadowColor: '#333',
-    shadowOpacity: 0.3,
+    shadowOpacity: 0.08,
     shadowRadius: 2,
-    marginHorizontal: 10,
-    marginVertical: 10,
-    elevation: 1,  
+    marginBottom: 12,
+    padding: 10,
+    elevation: 1,
   },
 
   home: {
     marginLeft: 12,
     marginTop: 2,
-
-
-
   },
 
   contentWrapper: {
     justifyContent: 'space-between',
-    marginLeft: 10 
+    marginLeft: 10,
   },
 
   itemText: {
-    fontSize: 24,
+    fontSize: 22,
     color: 'black',
-    fontFamily: 'Roboto_90Black',
+    fontFamily: 'Roboto_700Bold',
     marginLeft: 12,
   },
 
   itemTextSmall: {
-    color:'grey',
-    fontSize: 20,
-    fontFamily: 'Roboto_90Black',
+    color: 'grey',
+    fontSize: 14,
+    fontFamily: 'Roboto_400Regular',
     marginLeft: 12,
-    marginBottom: 8
+    marginBottom: 10,
   },
 
   arrow: {
-    left: '500%'
+    position: 'absolute',
+    left: '95%',
   },
-
- 
 });
 
 export default Card;
