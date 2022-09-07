@@ -51,7 +51,7 @@ const DataCollection = () => {
       <View style={styles.container2}>
         <ScrollView>
           <View style={styles.header}>
-            <Header retornar={retornar} />
+            <Header txt1="Regioes" txt2="Leituras" retornar={retornar} />
           </View>
           {/* <Client/> */}
           <View style={styles.body}>

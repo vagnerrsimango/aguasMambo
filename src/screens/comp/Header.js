@@ -2,8 +2,12 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import React from 'react';
 import CustomIcon from './CustomIcon';
 
-export default function Header({ retornar }) {
+export default function Header(props,{ retornar}) {
+  const txt1 = props.txt1
+  const txt2 = props.txt2
+  const itemColor = props.itemColor
   return (
+    
     <View style={styles.main}>
       {/* icon */}
       <View>
@@ -19,15 +23,14 @@ export default function Header({ retornar }) {
       <View style={styles.headerCentral}>
         <View style={styles.alt}>
           <Text style={[styles.headerText, { fontWeight: 'bold' }]}>
-            Regioes
+            {props.txt1}
           </Text>
         </View>
-        <View style={styles.alt2}>
-          <Text style={styles.headerText}>Leituras</Text>
+        <View style={[styles.alt2, {backgroundColor: '#0080BA',}]}>
+          <Text style={styles.headerText}>
+            {props.txt2}
+          </Text>
         </View>
-        {/* <View style={styles.alt2}>
-          <Text style={styles.headerText2}>Leitura</Text>
-        </View> */}
       </View>
     </View>
   );
@@ -47,13 +50,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
+  
   backBtn: {
     position: 'absolute',
     left: '2%',
     width: 'auto',
     height: '45%',
     top: '42%',
-
     paddingHorizontal: 18,
     paddingVertical: 8,
     borderRadius: 20,
@@ -100,9 +103,9 @@ const styles = StyleSheet.create({
   alt2: {
     flexDirection: 'row',
     justifyContent: 'space-evenly',
-    backgroundColor: '#0080BA',
     borderRadius: 40,
     paddingHorizontal: 12,
     paddingVertical: 10,
+    // backgroundColor: 'red',
   },
 });

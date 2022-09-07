@@ -15,6 +15,7 @@ import { useNavigation } from '@react-navigation/native';
 import api from '../services/api';
 import { loginValidator } from '../controller/AuthController';
 import { UserContext } from '../services/Context';
+import {Roboto_700Bold, Roboto_100Thin } from '@expo-google-fonts/roboto'
 
 const LoginScreen = () => {
   const navigation = useNavigation();

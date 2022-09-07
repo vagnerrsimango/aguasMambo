@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import React from 'react';
 import CustomIcon from './CustomIcon';
+import {Roboto_700Bold, Roboto_300Thin } from '@expo-google-fonts/roboto'
 
 export default function HeaderAdmin({ retornar }) {
   return (

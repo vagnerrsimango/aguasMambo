@@ -1,8 +1,9 @@
 import { StyleSheet, Text, View, TextInput, Image, TouchableOpacity } from 'react-native'
 import React, {useEffect,useState}  from 'react'
-import Header2 from './comp/Header2'
+import Header from './comp/Header'
 import { useNavigation } from '@react-navigation/native'
 import { Roboto_100Thin, Roboto_900Black } from '@expo-google-fonts/roboto'
+import { AntDesign } from '@expo/vector-icons';
 
 
 const DetailClient = ({route}) => {
@@ -32,18 +33,6 @@ const DetailClient = ({route}) => {
     
   }
 
-  
-
-
-
-
-
-  
-  // useEffect(()=>{
-  //   console.log(route.params.item)
-  //   setUserInfo(route.params.item)
-  // },[])
-
   const navigation = useNavigation()
 
     const retornar =()=> {
@@ -54,7 +43,7 @@ const DetailClient = ({route}) => {
   return (
     <View style={styles.container}>
       <View styler={styles.header}>
-      <Header2 retornar={retornar} />
+      <Header txt1="Texto" txt2="0001" retornar={retornar} />
       </View>
 
       <View style={styles.body}>
@@ -134,8 +123,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#F2F2F2',
     borderTopLeftRadius: 60,
     borderTopRightRadius: 60,
-    // borderBottomLeftRadius: 60,
-    // borderBottomRightRadius: 60,
     alignItems: 'center',
     justifyContent: 'flex-start'
 
