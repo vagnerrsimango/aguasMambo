@@ -1,0 +1,55 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "Elton",
+      "admin": true
+    },
+    {
+      "id": 2,
+      "username": "Vagner",
+      "admin": false
+    },
+    {
+      "id": 3,
+      "username": "Victor",
+      "admin": false
+    },
+    {
+      "id": 4
+    },
+    {
+      "id": 5
+    },
+    {
+      "id": 6
+    }
+  ],
+  "zones": [
+    {
+      "id": 1,
+      "name": "AltoMae",
+      "total": 6
+    },
+    {
+        "id": 2,
+        "name": "Burundi",
+        "total": 17,
+        "houses":[
+            {
+             "id":1 ,
+             "number":16 ,
+             "client":"Olivier Giroud" ,
+             "state": "paid" ,
+             "reading": 30 ,
+             "oldreading": 48 ,
+             "newreading": 50 
+                
+            }
+        ]
+      }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

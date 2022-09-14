@@ -15,31 +15,22 @@ const AdminDash = () => {
 
   const {user,setUser} = useContext(UserContext)
   
-  const zones = [
-    {name: 'Alto-Mae', houses: 5, key: '1'},
-    {name: 'Matola Gare', houses: 3, key: '2'},
-    {name: 'Hulene', houses: 8, key: '3'},
-  ]
+  const [zones,setZones]=useState([])
 
-  const client=[{
-    casa: 30,
-    cliente: 'Victor'}, 
-   {casa: 60,
-   cliente: 'Victor2'
-  }]
 
 
   useEffect(()=> {
 
   async function getZone() {
-    const response = await api.get('/connect',{
-      headers: {
-        'Authorization': `Bearer ${user.token}` 
-      }
-    })
+    // const response = await api.get('/zones',{
+    //   headers: {
+    //     'Authorization': `Bearer ${user.token}` 
+    //   }
+    // })
+    const response = await api.get('/zones')
 
-  //  setClient(response.data.response.data)
-
+    console.log(response.data)
+    setZones(response.data)
   }
 
   getZone()
@@ -68,24 +59,17 @@ const AdminDash = () => {
 
       <FlatList
       data={zones}
-      renderItem={(item)=> <Card zones={item} callScreen={()=>navigation.navigate('DataCollection',item)}/>}
-      key={(item)=>item.phone}
-      
-      
+      renderItem={(item)=> <Card zone={item} callScreen={()=>navigation.navigate('DataCollection',item)}/>}
+      key={(item)=>item.id}     
       />
        
       </View>
-
-     
-      
-
       </ScrollView> 
       <Image style={styles.gota1} source={require('../img/bg1.png')} />
       <View style={styles.imgGotas}>
       <Image style={styles.gota2} source={require('../img/waterdrop.png')} />
       <Image style={styles.gota2} source={require('../img/waterdrop2.png')} />
       <Image style={styles.gota2} source={require('../img/waterdrop.png')} />
-
       </View>
     </View>
   )

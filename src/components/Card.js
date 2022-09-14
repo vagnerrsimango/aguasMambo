@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
 import { color } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes';
 
-const Card = ({ client, callScreen }) => {
+const Card = ({ client, callScreen,zone }) => {
+ 
   return (
     <TouchableOpacity style={styles.item} onPress={callScreen}>
       {/* Cliente */}
@@ -16,8 +17,8 @@ const Card = ({ client, callScreen }) => {
         />
 
         <View style={styles.contentWrapper}>
-          <Text style={styles.itemText}>Alto Mae</Text>
-          <Text style={styles.itemTextSmall}>6 Casas</Text>
+          <Text style={styles.itemText}>{zone.item.name}</Text>
+          <Text style={styles.itemTextSmall}>{zone.item.total} </Text>
         </View>
 
         <AntDesign
