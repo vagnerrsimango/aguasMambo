@@ -33,7 +33,7 @@ const LoginScreen = () => {
 
         const user = response.data;
 
-        user.length>0 ? setUser(user) :isLoading(false)
+        user.length>0 ? setUser(user[0]) :isLoading(false)
       } catch (error) {
         console.log(error);
         alert("Falha ao autenticar, verifique a conexao");
