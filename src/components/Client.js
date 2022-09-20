@@ -7,6 +7,7 @@ import {
 } from '@expo/vector-icons';
 
 const Client = ({ client, callScreen }) => {
+  console.log(client)
   return (
     <TouchableOpacity style={styles.item} onPress={callScreen}>
       {/* Cliente */}

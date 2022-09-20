@@ -28,18 +28,23 @@
   "zones": [
     {
       "id": 1,
-      "name": "AltoMae",
-      "total": 6
+      "name": "PAZIMANE",
+      "total": 2
+    },
+    {
+      "id": 14,
+      "name": "PAZIMANE",
+      "total": 2
     },
     {
         "id": 2,
-        "name": "Burundi",
-        "total": 17,
+        "name": "MEMO 1",
+        "total": 2,
         "houses":[
             {
              "id":1 ,
              "number":16 ,
-             "client":"Olivier Giroud" ,
+             "client":"Daniel Mascarenhas" ,
              "state": "paid" ,
              "reading": 30 ,
              "oldreading": 48 ,

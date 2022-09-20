@@ -23,7 +23,7 @@ const DetailClient = ({route}) => {
   const addLeitura2=(add)=>{
     setOldLeitura(add)
   }
-  
+
   const convertMetical = ()=>{
     if (leitura>oldLeitura){
       setValue(25.5 * leitura)
