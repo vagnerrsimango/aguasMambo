@@ -1,13 +1,13 @@
-import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import React from "react";
+import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import {
   AntDesign,
   FontAwesome5,
   MaterialCommunityIcons,
-} from '@expo/vector-icons';
+} from "@expo/vector-icons";
 
 const Client = ({ client, callScreen }) => {
-  console.log(client)
+  console.log(client);
   return (
     <TouchableOpacity style={styles.item} onPress={callScreen}>
       {/* Cliente */}
@@ -25,12 +25,6 @@ const Client = ({ client, callScreen }) => {
             Cliente: {client.item.cliente}
           </Text>
         </View>
-
-        {/* <View style={styles.settings}>
-          <TouchableOpacity placeholder="Settings">
-           <FontAwesome5 name="hand-holding-water" size={24} color="black" />
-          </TouchableOpacity>
-        </View> */}
       </View>
     </TouchableOpacity>
   );
@@ -38,18 +32,17 @@ const Client = ({ client, callScreen }) => {
 
 const styles = StyleSheet.create({
   itemWrapperStyle: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderBottomWidth: 0.7,
-    width: '90%',
-    borderColor: '#ddd',
+    flexDirection: "row",
+    alignItems: "center",
+    borderBottomWidth: 1.7,
+    width: "100%",
+    borderColor: "#ddd",
     shadowOffset: { width: 1, height: 1 },
-    shadowColor: '#333',
+    shadowColor: "#333",
     shadowOpacity: 0.08,
     shadowRadius: 2,
     marginBottom: 10,
-    padding: 10,
-    elevation: 1,
+    padding: 2,
   },
   itemImage: {
     width: 20,
@@ -63,27 +56,27 @@ const styles = StyleSheet.create({
   },
 
   contentWrapper: {
-    justifyContent: 'space-between',
+    justifyContent: "space-between",
     marginLeft: 10,
   },
 
   itemText: {
     fontSize: 18,
-    color: 'black',
-    fontFamily: 'Roboto_30Black',
+    color: "black",
+    fontFamily: "Roboto_30Black",
     marginLeft: 12,
   },
 
   itemTextSmall: {
-    color: 'grey',
+    color: "grey",
     fontSize: 16,
-    fontFamily: 'Roboto_100Black',
+    fontFamily: "Roboto_100Black",
     marginLeft: 12,
     marginBottom: 8,
   },
 
   settings: {
-    position: 'absolute',
+    position: "absolute",
     right: 0,
     //backgroundColor: 'red',
     // borderColor: '#FFA219',

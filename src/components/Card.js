@@ -44,9 +44,7 @@ const styles = StyleSheet.create({
     shadowColor: '#333',
     shadowOpacity: 0.08,
     shadowRadius: 2,
-    marginBottom: 12,
-    padding: 10,
-    elevation: 1,
+    marginBottom: 6,
   },
 
   home: {
@@ -57,10 +55,11 @@ const styles = StyleSheet.create({
   contentWrapper: {
     justifyContent: 'space-between',
     marginLeft: 10,
+    marginTop: 4
   },
 
   itemText: {
-    fontSize: 22,
+    fontSize: 18,
     color: 'black',
     fontFamily: 'Roboto_700Bold',
     marginLeft: 12,
@@ -76,7 +75,7 @@ const styles = StyleSheet.create({
 
   arrow: {
     position: 'absolute',
-    left: '95%',
+    left: '90%',
   },
 });
 
