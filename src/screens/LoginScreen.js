@@ -7,15 +7,15 @@ import {
   TextInput,
   TouchableOpacity,
   Animated,
-} from "react-native";
-import React, { useState, useEffect, useContext } from "react";
-import call from "react-native-phone-call";
-import ProgressDialog from "react-native-progress-dialog";
-import { useNavigation } from "@react-navigation/native";
-import api from "../services/api";
-import { loginValidator } from "../controller/AuthController";
-import { UserContext } from "../services/Context";
-import { Roboto_700Bold, Roboto_100Thin } from "@expo-google-fonts/roboto";
+} from 'react-native';
+import React, { useState, useEffect, useContext } from 'react';
+import call from 'react-native-phone-call';
+import ProgressDialog from 'react-native-progress-dialog';
+import { useNavigation } from '@react-navigation/native';
+import api from '../services/api';
+import { loginValidator } from '../controller/AuthController';
+import { UserContext } from '../services/Context';
+import { Roboto_700Bold, Roboto_100Thin } from '@expo-google-fonts/roboto';
 
 const LoginScreen = () => {
   const navigation = useNavigation();
@@ -29,25 +29,30 @@ const LoginScreen = () => {
     if (loginValidator(username) === true) {
       console.log(username);
       try {
-        const response = await api.get(`users?username=${username}`);
+        const response = await api.get(`users/login?username=${username}`);
 
         const user = response.data;
+        
+        console.log(
+          '🚀 ~ file: LoginScreen.js ~ line 35 ~ makeLogin ~ user',
+          user
+        );
 
-        user.length>0 ? setUser(user[0]) :isLoading(false)
+        user ? setUser(user) : isLoading(false);
       } catch (error) {
         console.log(error);
-        alert("Falha ao autenticar, verifique a conexao");
+        alert('Falha ao autenticar, verifique a conexao');
         isLoading(false);
       }
     } else {
-      alert("Por favor preencha o campo de nome do utilizador");
+      alert('Por favor preencha o campo de nome do utilizador');
       isLoading(false);
     }
   };
 
   const triggerCall = () => {
     const args = {
-      number: "+258846805329",
+      number: '+258846805329',
       prompt: true,
       skipCanOpen: true,
     };
@@ -63,7 +68,7 @@ const LoginScreen = () => {
   return (
     <KeyboardAvoidingView
       style={styles.background}
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
       <ProgressDialog
         visible={loading}
@@ -72,17 +77,17 @@ const LoginScreen = () => {
       />
       <Animated.View
         style={{
-          justifyContent: "center",
+          justifyContent: 'center',
           marginTop: margem,
         }}
       >
-        <Image style={styles.img} source={require("../img/logoshadow.png")} />
+        <Image style={styles.img} source={require('../img/logoshadow.png')} />
       </Animated.View>
 
       <View style={styles.shadow}>
         <Image
           style={styles.imgShadow}
-          source={require("../img/mainBackground.png")}
+          source={require('../img/mainBackground.png')}
         />
       </View>
 
@@ -90,7 +95,7 @@ const LoginScreen = () => {
         <TextInput
           style={styles.input}
           placeholder="Utilizador/Contacto"
-          placeholderTextColor={"grey"}
+          placeholderTextColor={'grey'}
           onChangeText={(text) => setUsername(text)}
         />
 
@@ -111,20 +116,20 @@ export default LoginScreen;
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#fff",
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#fff',
   },
   containerLogo: {},
 
   img: {
     width: 120,
     height: 200,
-    resizeMode: "stretch",
+    resizeMode: 'stretch',
   },
 
   shadow: {
-    position: "absolute",
+    position: 'absolute',
     top: 0,
     right: 0,
   },
@@ -134,38 +139,38 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    width: "90%",
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '90%',
     paddingBottom: 50,
   },
   input: {
-    backgroundColor: "transparent",
-    width: "90%",
-    color: "black",
+    backgroundColor: 'transparent',
+    width: '90%',
+    color: 'black',
     marginBottom: 15,
-    color: "black",
+    color: 'black',
     fontSize: 17,
     borderRadius: 7,
     padding: 10,
-    borderColor: "#03A9F4",
+    borderColor: '#03A9F4',
     borderWidth: 1,
-    textAlign: "center",
+    textAlign: 'center',
   },
 
   btnSubmit: {
-    backgroundColor: "#FFA21A",
-    width: "90%",
+    backgroundColor: '#FFA21A',
+    width: '90%',
     height: 45,
     padding: 10,
     borderRadius: 7,
   },
 
   submitText: {
-    textAlign: "center",
-    color: "#fff",
+    textAlign: 'center',
+    color: '#fff',
     fontSize: 18,
-    fontFamily: "Roboto_700Bold",
+    fontFamily: 'Roboto_700Bold',
   },
 
   contact: {
@@ -174,7 +179,7 @@ const styles = StyleSheet.create({
 
   contactTxt: {
     fontSize: 14,
-    color: "#B9BCBE",
-    fontFamily: "Roboto_100Thin",
+    color: '#B9BCBE',
+    fontFamily: 'Roboto_100Thin',
   },
 });

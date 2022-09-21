@@ -22,14 +22,13 @@ const AdminDash = () => {
 
   useEffect(() => {
     async function getZone() {
-      const response = await api.get("/zones");
-      console.log(response.data);
+      const response = await api.get("/zones/index");
       setZones(response.data);
     }
 
     getZone();
-    console.log("user do contexto=>", user);
-  }, []);
+  }, [zones]);
+
   const navigation = useNavigation();
 
   const retornar = () => {

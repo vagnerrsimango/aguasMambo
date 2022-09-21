@@ -18,7 +18,7 @@ const Card = ({ client, callScreen,zone }) => {
 
         <View style={styles.contentWrapper}>
           <Text style={styles.itemText}>{zone.item.name}</Text>
-          <Text style={styles.itemTextSmall}>{zone.item.total} </Text>
+          <Text style={styles.itemTextSmall}>{zone.item.houses} </Text>
         </View>
 
         <AntDesign
