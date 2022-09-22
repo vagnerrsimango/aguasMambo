@@ -1,35 +1,36 @@
-import { useState } from 'react';
+import { useState } from "react";
 import {
   useFonts,
-  Roboto_2Thin,
-  Roboto_8700Black,
-} from '@expo-google-fonts/roboto';
-import AppLoading from 'expo-app-loading';
-import { getAllUsers } from './src/controller/AuthController';
-import Routes from './src/routes';
-import AuthProvider from './src/services/AuthProvider';
-import { storeData } from './src/services/localstorage';
+  Roboto_100Thin,
+  Roboto_900Black,
+} from "@expo-google-fonts/roboto";
+import AppLoading from "expo-app-loading";
+import { getAllData, getAllUsers } from "./src/controller/AuthController";
+import Routes from "./src/routes";
+import AuthProvider from "./src/services/AuthProvider";
+import { storeData } from "./src/services/localstorage";
 
 export default function App() {
   let [loaded, setLoaded] = useState(false);
 
-  //   useFonts({
-  //   Roboto_2Thin,
-  //   Roboto_8700Black,
-  // });
-  if (!loaded) {
-    getAllUsers()
-      .then((users) => {
-        console.log(users);
-        storeData('@users', users, (result) => {
-          if (result === true) {
-            console.log('Loadin data');
-            setLoaded(true);
+  getAllData()
+    .then((data) => {
+      console.log("🚀 ~ file: App.js ~ line 18 ~ .then ~ data", data);
+      storeData("@local", data, (result) => {
+        if (result === true) {
+          setLoaded(true);
+        } else {
+          console.log("error storing data=>", result);
+        }
+      });
+    })
+    .catch((err) => console.error(err));
 
-          }
-        });
-      })
-      .catch((err) => console.log(err));
+  let [fontLoaded] = useFonts({
+    Roboto_100Thin,
+    Roboto_900Black,
+  });
+  if (!loaded && !fontLoaded) {
     return <AppLoading />;
   }
   return (
