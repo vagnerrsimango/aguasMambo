@@ -1,13 +1,12 @@
-import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
+import React from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import {
   AntDesign,
   FontAwesome5,
   MaterialCommunityIcons,
-} from "@expo/vector-icons";
+} from '@expo/vector-icons';
 
 const Client = ({ client, callScreen }) => {
-  console.log(client);
   return (
     <TouchableOpacity style={styles.item} onPress={callScreen}>
       {/* Cliente */}
@@ -20,9 +19,10 @@ const Client = ({ client, callScreen }) => {
         />
 
         <View style={styles.contentWrapper}>
-          <Text style={styles.itemText}>Casa: {client.item.casa}</Text>
+          <Text style={styles.itemText}>Casa: {client.item.cliente_id}</Text>
+          <Text style={styles.itemTextSmall}>Cliente: {client.item.nome}</Text>
           <Text style={styles.itemTextSmall}>
-            Cliente: {client.item.cliente}
+            Telefone: {client.item.telefone}
           </Text>
         </View>
       </View>
@@ -32,13 +32,13 @@ const Client = ({ client, callScreen }) => {
 
 const styles = StyleSheet.create({
   itemWrapperStyle: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     borderBottomWidth: 1.7,
-    width: "100%",
-    borderColor: "#ddd",
+    width: '100%',
+    borderColor: '#ddd',
     shadowOffset: { width: 1, height: 1 },
-    shadowColor: "#333",
+    shadowColor: '#333',
     shadowOpacity: 0.08,
     shadowRadius: 2,
     marginBottom: 10,
@@ -56,27 +56,26 @@ const styles = StyleSheet.create({
   },
 
   contentWrapper: {
-    justifyContent: "space-between",
+    justifyContent: 'space-between',
     marginLeft: 10,
   },
 
   itemText: {
-    fontSize: 18,
-    color: "black",
-    fontFamily: "Roboto_30Black",
+    fontSize: 16,
+    color: 'black',
+
     marginLeft: 12,
   },
 
   itemTextSmall: {
-    color: "grey",
-    fontSize: 16,
-    fontFamily: "Roboto_100Black",
+    color: 'grey',
+    fontSize: 14,
     marginLeft: 12,
     marginBottom: 8,
   },
 
   settings: {
-    position: "absolute",
+    position: 'absolute',
     right: 0,
     //backgroundColor: 'red',
     // borderColor: '#FFA219',

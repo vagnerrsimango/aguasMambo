@@ -15,7 +15,6 @@ import { useNavigation } from '@react-navigation/native';
 import api from '../services/api';
 import { loginValidator } from '../controller/AuthController';
 import { UserContext } from '../services/Context';
-import { Roboto_700Bold, Roboto_100Thin } from '@expo-google-fonts/roboto';
 
 const LoginScreen = () => {
   const navigation = useNavigation();
@@ -27,20 +26,13 @@ const LoginScreen = () => {
   const makeLogin = async () => {
     isLoading(true);
     if (loginValidator(username) === true) {
-      console.log(username);
       try {
         const response = await api.get(`users/login?username=${username}`);
 
         const user = response.data;
-        
-        console.log(
-          '🚀 ~ file: LoginScreen.js ~ line 35 ~ makeLogin ~ user',
-          user
-        );
 
         user ? setUser(user) : isLoading(false);
       } catch (error) {
-        console.log(error);
         alert('Falha ao autenticar, verifique a conexao');
         isLoading(false);
       }
@@ -170,7 +162,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#fff',
     fontSize: 18,
-    fontFamily: 'Roboto_700Bold',
   },
 
   contact: {

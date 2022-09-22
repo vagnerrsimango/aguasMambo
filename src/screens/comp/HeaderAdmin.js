@@ -3,7 +3,7 @@ import React from 'react';
 import CustomIcon from './CustomIcon';
 import {Roboto_700Bold, Roboto_300Thin } from '@expo-google-fonts/roboto'
 
-export default function HeaderAdmin({ retornar }) {
+export default function HeaderAdmin({ retornar, username }) {
   return (
     <View style={styles.main}>
       <TouchableOpacity style={styles.backBtn} onPress={retornar}>
@@ -16,7 +16,7 @@ export default function HeaderAdmin({ retornar }) {
 
       <View style={styles.header}>
         <View style={styles.alt}>
-          <Text style={styles.headerText}>Administrador</Text>
+          <Text style={styles.headerText}>{ username }</Text>
         </View>
       </View>
     </View>

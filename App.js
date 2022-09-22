@@ -1,45 +1,40 @@
-
-import { StyleSheet, Text, View } from 'react-native';
-
+import { useState } from 'react';
 import {
   useFonts,
-  Roboto_100Thin,
-  Roboto_100Thin_Italic,
-  Roboto_300Light,
-  Roboto_300Light_Italic,
-  Roboto_400Regular,
-  Roboto_400Regular_Italic,
-  Roboto_500Medium,
-  Roboto_500Medium_Italic,
-  Roboto_700Bold,
-  Roboto_700Bold_Italic,
-  Roboto_900Black,
-  Roboto_900Black_Italic,
+  Roboto_2Thin,
+  Roboto_8700Black,
 } from '@expo-google-fonts/roboto';
 import AppLoading from 'expo-app-loading';
-import DetailClient from './src/screens/DetailClient';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { getAllUsers } from './src/controller/AuthController';
 import Routes from './src/routes';
 import AuthProvider from './src/services/AuthProvider';
-
-
-
+import { storeData } from './src/services/localstorage';
 
 export default function App() {
-  const Stack = createNativeStackNavigator()
+  let [loaded, setLoaded] = useState(false);
 
-  let [loaded]= useFonts({
-    Roboto_100Thin, Roboto_900Black,
-  })
-  if (!loaded){
-    return <AppLoading/>
+  //   useFonts({
+  //   Roboto_2Thin,
+  //   Roboto_8700Black,
+  // });
+  if (!loaded) {
+    getAllUsers()
+      .then((users) => {
+        console.log(users);
+        storeData('@users', users, (result) => {
+          if (result === true) {
+            console.log('Loadin data');
+            setLoaded(true);
+
+          }
+        });
+      })
+      .catch((err) => console.log(err));
+    return <AppLoading />;
   }
   return (
-  <AuthProvider>
-    <Routes/>
-  </AuthProvider>
-  
-  )}
-
-
+    <AuthProvider>
+      <Routes />
+    </AuthProvider>
+  );
+}
