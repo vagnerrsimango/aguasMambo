@@ -17,14 +17,13 @@ const DetailClient = ({ route }) => {
   const [value, setValue] = useState(0);
   const { user } = useContext(UserContext);
 
-  console.log(
-    '🚀 ~ file: DetailClient.js ~ line 15 ~ DetailClient ~ client',
-    client
-  );
-
   useEffect(() => {});
+  const verLeitura = () => {
+    alert(leitura);
+  };
   const addLeituraM3 = (add) => {
-    setLeitura(add);
+    const leitura = setLeitura(add);
+    console.log(leitura);
   };
 
   const addLeituraMT = (add) => {
@@ -87,7 +86,7 @@ const DetailClient = ({ route }) => {
         <TextInput
           style={styles.txtBox3}
           value={
-            `${client.activo}` === 0 ? 'Cliente activo' : 'Cliente inactivo'
+            `${client.activo}` === 0 ? 'Cliente inactivo' : 'Cliente activo'
           }
           textAlign={'center'}
           fontSize={18}
@@ -110,7 +109,7 @@ const DetailClient = ({ route }) => {
           fontSize={18}
           editable={user.admin === true ? false : true}
           selectTextOnFocus={false}
-          onChangeText={addLeituraM3}
+          onChangeText={(leitura) => setLeitura(leitura)}
         ></TextInput>
 
         {user.admin === true ? (
@@ -126,8 +125,8 @@ const DetailClient = ({ route }) => {
       </View>
 
       <View style={styles.footer}>
-        <TouchableOpacity style={styles.btnLeitura} onPress={convertMetical}>
-          <Text style={styles.txtLeitura}>Leitura</Text>
+        <TouchableOpacity style={styles.btnLeitura} onPress={verLeitura}>
+          <Text style={styles.txtLeitura}>Submeter</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.footer}></View>
@@ -174,12 +173,16 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     fontSize: 13,
     textAlignVertical: 'top',
-    fontFamily: 'Roboto_100Thin',
-    borderColor: 'orange',
-    borderWidth: 2,
+    fontFamily: 'Roboto_900Black',
     marginTop: 10,
     width: 300,
     height: 50,
+
+    color: 'white',
+    backgroundColor: 'orange',
+    borderColor: 'transparent',
+
+    borderRadius: 50,
   },
 
   txtBox2: {
@@ -187,29 +190,34 @@ const styles = StyleSheet.create({
     textAlignVertical: 'top',
     fontSize: 13,
     fontFamily: 'Roboto_100Thin',
-    borderColor: '#03293A',
+    borderColor: 'orange',
     borderWidth: 2,
     marginTop: 10,
     width: 300,
     height: 50,
+
+    borderRadius: 50,
   },
 
   txtBox3: {
     textAlign: 'center',
     fontSize: 13,
     textAlignVertical: 'center',
-    fontFamily: 'Roboto_100Thin',
-    borderColor: 'black',
+    fontFamily: 'Roboto_900Black',
+    borderColor: 'transparent',
     borderWidth: 2,
     marginTop: 10,
     width: 300,
     height: 50,
+    backgroundColor: '#03293A',
+    color: 'white',
+    borderRadius: 50,
   },
 
   txtLeitura: {
     color: '#fff',
     fontFamily: 'Roboto_900Black',
-    fontSize: 25,
+    fontSize: 18,
     textAlign: 'center',
   },
 
@@ -236,6 +244,9 @@ const styles = StyleSheet.create({
 
     marginTop: 18,
     borderRadius: 30,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 
   agendaIMG: {
