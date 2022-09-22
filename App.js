@@ -15,7 +15,6 @@ export default function App() {
 
   getAllData()
     .then((data) => {
-      console.log("🚀 ~ file: App.js ~ line 18 ~ .then ~ data", data);
       storeData("@local", data, (result) => {
         if (result === true) {
           setLoaded(true);

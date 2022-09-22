@@ -5,14 +5,15 @@ import {
   Image,
   FlatList,
   ScrollView,
-} from 'react-native';
-import React, { useEffect, useState, useContext } from 'react';
-import Header from '../screens/comp/Header';
-import Client from '../components/Client';
-import { useNavigation } from '@react-navigation/native';
-import { UserContext } from '../services/Context';
-import { AntDesign } from '@expo/vector-icons';
-import api from '../services/api';
+} from "react-native";
+import React, { useEffect, useState, useContext } from "react";
+import Header from "../screens/comp/Header";
+import Client from "../components/Client";
+import { useNavigation } from "@react-navigation/native";
+import { UserContext } from "../services/Context";
+import { AntDesign } from "@expo/vector-icons";
+import api from "../services/api";
+import { getOfflineClients } from "../controller/Clients.controller";
 
 const DataCollection = (props) => {
   const [clients, setClients] = useState([]);
@@ -23,12 +24,14 @@ const DataCollection = (props) => {
     //setZone();
 
     async function getZone() {
-      const response = await api.get('/clients/index', {
-        params: {
-          zone: zone.name,
-        },
-      });
-      setClients(response.data);
+      // const response = await api.get('/clients/index', {
+      //   params: {
+      //     zone: zone.name,
+      //   },
+      // });
+
+      const response = await getOfflineClients(zone.name);
+      setClients(response);
     }
 
     getZone();
@@ -54,26 +57,26 @@ const DataCollection = (props) => {
               renderItem={(item) => (
                 <Client
                   client={item}
-                  callScreen={() => navigation.navigate('DetailClient', item)}
+                  callScreen={() => navigation.navigate("DetailClient", item)}
                 />
               )}
               key={(item) => item.phone}
             />
           </View>
         </ScrollView>
-        <Image style={styles.gota1} source={require('../img/bg1.png')} />
+        <Image style={styles.gota1} source={require("../img/bg1.png")} />
         <View style={styles.imgGotas}>
           <Image
             style={styles.gota2}
-            source={require('../img/waterdrop.png')}
+            source={require("../img/waterdrop.png")}
           />
           <Image
             style={styles.gota2}
-            source={require('../img/waterdrop2.png')}
+            source={require("../img/waterdrop2.png")}
           />
           <Image
             style={styles.gota2}
-            source={require('../img/waterdrop.png')}
+            source={require("../img/waterdrop.png")}
           />
         </View>
       </View>
@@ -84,49 +87,49 @@ const DataCollection = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#03293A',
-    alignContent: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#03293A",
+    alignContent: "center",
+    justifyContent: "center",
   },
   container2: {
-    top: '1%',
+    top: "1%",
     borderBottomRightRadius: 1,
-    height: '100%',
+    height: "100%",
     zIndex: 10,
   },
   card: {
     padding: 16,
-    backgroundColor: 'white',
+    backgroundColor: "white",
     borderRadius: 60,
     marginTop: 8,
   },
   header: {
-    backgroundColor: '#03293A',
+    backgroundColor: "#03293A",
     flex: 0.6,
   },
 
   body: {
-    backgroundColor: '#F2F2F2',
-    height: '100%',
+    backgroundColor: "#F2F2F2",
+    height: "100%",
     borderRadius: 60,
-    paddingBottom: '100%',
+    paddingBottom: "100%",
   },
 
   clients: {
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     flex: 1,
   },
 
   gota1: {
-    position: 'absolute',
+    position: "absolute",
     left: 0,
     bottom: 0,
     opacity: 0.2,
   },
 
   imgGotas: {
-    position: 'absolute',
-    justifyContent: 'space-evenly',
+    position: "absolute",
+    justifyContent: "space-evenly",
     bottom: 0,
     right: 0,
   },
