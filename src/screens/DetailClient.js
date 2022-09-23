@@ -5,25 +5,42 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Header from './comp/Header';
 import { useNavigation } from '@react-navigation/native';
 import { UserContext } from '../services/Context';
+import Progress from './comp/Progress';
+import api from '../services/api';
 
 const DetailClient = ({ route }) => {
   const [client, setClient] = useState(route.params.item);
   const [leitura, setLeitura] = useState(0);
+
+  const [leituraActual, setLeituraActual] = useState(
+    route.params.item.no_metros_cubicos
+  );
   const [oldLeitura, setOldLeitura] = useState(0);
   const [value, setValue] = useState(0);
   const { user } = useContext(UserContext);
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {});
-  const verLeitura = () => {
-    alert(leitura);
+  const verLeitura = async () => {
+    setLoading(true);
+    const previous = client.no_metros_cubicos;
+    const sum = Number(leitura) + Number(previous);
+
+    const response = await api.put(
+      `clients/update?value=${sum}&client=${client.contador_id}`
+    );
+    setLoading(false);
+    if (response.data.status) {
+      setLeituraActual(sum);
+      alert('Actualizado com sucesso');
+      // return to ...
+    }
   };
   const addLeituraM3 = (add) => {
     const leitura = setLeitura(add);
-    console.log(leitura);
   };
 
   const addLeituraMT = (add) => {
@@ -50,6 +67,7 @@ const DetailClient = ({ route }) => {
 
   return (
     <View style={styles.container}>
+      <Progress loading={loading} />
       <View styler={styles.header}>
         <Header
           txt1="Detalhes de leitura"
@@ -68,7 +86,7 @@ const DetailClient = ({ route }) => {
         ></TextInput>
         <TextInput
           style={styles.txtBox3}
-          value={`${client.no_metros_cubicos} M3`}
+          value={`${leituraActual} M3`}
           editable={false}
           textAlign={'center'}
           fontSize={18}
@@ -173,7 +191,6 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     fontSize: 13,
     textAlignVertical: 'top',
-    fontFamily: 'Roboto_900Black',
     marginTop: 10,
     width: 300,
     height: 50,
@@ -189,7 +206,6 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     textAlignVertical: 'top',
     fontSize: 13,
-    fontFamily: 'Roboto_100Thin',
     borderColor: 'orange',
     borderWidth: 2,
     marginTop: 10,
@@ -203,7 +219,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 13,
     textAlignVertical: 'center',
-    fontFamily: 'Roboto_900Black',
     borderColor: 'transparent',
     borderWidth: 2,
     marginTop: 10,
@@ -216,7 +231,6 @@ const styles = StyleSheet.create({
 
   txtLeitura: {
     color: '#fff',
-    fontFamily: 'Roboto_900Black',
     fontSize: 18,
     textAlign: 'center',
   },
@@ -225,14 +239,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 15,
     color: '#fff',
-    fontFamily: 'Roboto_100Thin',
   },
 
   billText2: {
     fontWeight: 'bold',
     fontSize: 15,
     color: '#fff',
-    fontFamily: 'Roboto_900Black',
   },
 
   btnLeitura: {

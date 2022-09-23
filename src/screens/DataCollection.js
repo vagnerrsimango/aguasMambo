@@ -11,7 +11,6 @@ import Header from "../screens/comp/Header";
 import Client from "../components/Client";
 import { useNavigation } from "@react-navigation/native";
 import { UserContext } from "../services/Context";
-import { AntDesign } from "@expo/vector-icons";
 import api from "../services/api";
 import { getOfflineClients } from "../controller/Clients.controller";
 

@@ -8,11 +8,11 @@ import {
   TouchableOpacity,
   Animated,
 } from "react-native";
+
 import React, { useState, useEffect, useContext } from "react";
 import call from "react-native-phone-call";
 import ProgressDialog from "react-native-progress-dialog";
 import { useNavigation } from "@react-navigation/native";
-import api from "../services/api";
 import { loginOffine, loginValidator } from "../controller/AuthController";
 import { UserContext } from "../services/Context";
 
