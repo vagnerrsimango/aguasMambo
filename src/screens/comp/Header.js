@@ -1,23 +1,26 @@
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import React from "react";
 import CustomIcon from "./CustomIcon";
+import { useNavigation } from "@react-navigation/native";
 
-export default function Header(props, { retornar }) {
+export default function Header(props) {
   const txt1 = props.txt1;
   const txt2 = props.txt2;
   const itemColor = props.itemColor;
+
+  const navigation = useNavigation();
   return (
     <View style={styles.main}>
-      {/* icon */}
-      <View>
-        <TouchableOpacity style={styles.backBtn} onPress={retornar}>
-          <CustomIcon
-            icon="angle-left"
-            source="FontAwesome"
-            style={{ alignItems: "center" }}
-          />
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity
+        style={styles.backBtn}
+        onPress={() => navigation.goBack()}
+      >
+        <CustomIcon
+          icon="angle-left"
+          source="FontAwesome"
+          style={{ alignItems: "center" }}
+        />
+      </TouchableOpacity>
 
       <View style={styles.headerCentral}>
         <View style={styles.alt}>
@@ -29,6 +32,14 @@ export default function Header(props, { retornar }) {
           <Text style={styles.headerText}>{props.txt2}</Text>
         </View>
       </View>
+
+      <TouchableOpacity style={styles.searchBtn} onPress={props.navigateTo}>
+        <CustomIcon
+          icon="search"
+          source="FontAwesome"
+          style={{ alignItems: "center" }}
+        />
+      </TouchableOpacity>
     </View>
   );
 }
@@ -59,6 +70,19 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     zIndex: 10,
   },
+
+  searchBtn: {
+    position: "absolute",
+    right: "2%",
+    width: "auto",
+    height: "45%",
+    top: "42%",
+    paddingHorizontal: 18,
+    paddingVertical: 8,
+    borderRadius: 20,
+    zIndex: 10,
+  },
+
   headerCenter: {
     marginTop: 30,
     marginHorizontal: 20,
@@ -92,7 +116,6 @@ const styles = StyleSheet.create({
     borderColor: "#0080BA40",
     borderRadius: 40,
     borderWidth: 0.5,
-
     paddingHorizontal: 22,
     paddingVertical: 10,
   },
@@ -103,6 +126,5 @@ const styles = StyleSheet.create({
     borderRadius: 40,
     paddingHorizontal: 12,
     paddingVertical: 10,
-    // backgroundColor: 'red',
   },
 });

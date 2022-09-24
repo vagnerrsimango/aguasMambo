@@ -14,7 +14,7 @@ import { UserContext } from "../services/Context";
 import api from "../services/api";
 import { getOfflineClients } from "../controller/Clients.controller";
 
-const DataCollection = (props) => {
+const SearchFile = (props) => {
   const [clients, setClients] = useState([]);
   const { user, setUser } = useContext(UserContext);
   const [zone, setZone] = useState(props.route.params.item);
@@ -143,4 +143,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DataCollection;
+export default SearchFile;

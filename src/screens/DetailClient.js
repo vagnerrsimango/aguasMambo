@@ -4,13 +4,13 @@ import {
   View,
   TextInput,
   TouchableOpacity,
-} from 'react-native';
-import React, { useContext, useState } from 'react';
-import Header from './comp/Header';
-import { useNavigation } from '@react-navigation/native';
-import { UserContext } from '../services/Context';
-import Progress from './comp/Progress';
-import api from '../services/api';
+} from "react-native";
+import React, { useContext, useState } from "react";
+import Header from "./comp/Header";
+import { useNavigation } from "@react-navigation/native";
+import { UserContext } from "../services/Context";
+import Progress from "./comp/Progress";
+import api from "../services/api";
 
 const DetailClient = ({ route }) => {
   const [client, setClient] = useState(route.params.item);
@@ -35,7 +35,7 @@ const DetailClient = ({ route }) => {
     setLoading(false);
     if (response.data.status) {
       setLeituraActual(sum);
-      alert('Actualizado com sucesso');
+      alert("Actualizado com sucesso");
       // return to ...
     }
   };
@@ -55,7 +55,7 @@ const DetailClient = ({ route }) => {
     if (leitura > oldLeitura) {
       setValue(25.5 * leitura);
     } else {
-      alert('A nova fatura deve ser superior a anterior!');
+      alert("A nova fatura deve ser superior a anterior!");
     }
   };
 
@@ -69,18 +69,14 @@ const DetailClient = ({ route }) => {
     <View style={styles.container}>
       <Progress loading={loading} />
       <View styler={styles.header}>
-        <Header
-          txt1="Detalhes de leitura"
-          txt2={client.cliente_id}
-          retornar={retornar}
-        />
+        <Header txt1="Detalhes" txt2={client.cliente_id} retornar={retornar} />
       </View>
 
       <View style={styles.body}>
         <TextInput
           style={styles.txtBox1}
           value={client.nome}
-          textAlign={'center'}
+          textAlign={"center"}
           fontSize={18}
           editable={false}
         ></TextInput>
@@ -88,7 +84,7 @@ const DetailClient = ({ route }) => {
           style={styles.txtBox3}
           value={`${leituraActual} M3`}
           editable={false}
-          textAlign={'center'}
+          textAlign={"center"}
           fontSize={18}
           onChangeText={addLeitura2}
         ></TextInput>
@@ -96,25 +92,25 @@ const DetailClient = ({ route }) => {
         <TextInput
           style={styles.txtBox3}
           value={`${client.saldo} Mts`}
-          placeholderTextColor={'black'}
-          textAlign={'center'}
+          placeholderTextColor={"black"}
+          textAlign={"center"}
           fontSize={18}
           editable={false}
         ></TextInput>
         <TextInput
           style={styles.txtBox3}
           value={
-            `${client.activo}` === 0 ? 'Cliente inactivo' : 'Cliente activo'
+            `${client.activo}` === 0 ? "Cliente inactivo" : "Cliente activo"
           }
-          textAlign={'center'}
+          textAlign={"center"}
           fontSize={18}
           editable={false}
         ></TextInput>
 
         <TextInput
           style={styles.txtBox3}
-          value={`${client.isento_de_multas}` === 0 ? '' : 'Isento de Multa'}
-          textAlign={'center'}
+          value={`${client.isento_de_multas}` === 0 ? "" : "Isento de Multa"}
+          textAlign={"center"}
           fontSize={18}
           editable={false}
         ></TextInput>
@@ -122,8 +118,8 @@ const DetailClient = ({ route }) => {
         <TextInput
           style={styles.txtBox2}
           placeholder="Introduza o valor da leitura em M3"
-          placeholderTextColor={'black'}
-          textAlign={'center'}
+          placeholderTextColor={"black"}
+          textAlign={"center"}
           fontSize={18}
           editable={user.admin === true ? false : true}
           selectTextOnFocus={false}
@@ -134,8 +130,8 @@ const DetailClient = ({ route }) => {
           <TextInput
             style={styles.txtBox2}
             placeholder="Nova Leitura (meticais)"
-            placeholderTextColor={'black'}
-            textAlign={'center'}
+            placeholderTextColor={"black"}
+            textAlign={"center"}
             fontSize={18}
             onChangeText={addLeituraMT}
           ></TextInput>
@@ -157,56 +153,56 @@ export default DetailClient;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignContent: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#03293A',
+    alignContent: "center",
+    justifyContent: "center",
+    backgroundColor: "#03293A",
   },
 
   header: {
-    backgroundColor: '#03293A',
+    backgroundColor: "#03293A",
     flex: 0.9,
   },
 
   body: {
     flex: 2,
-    backgroundColor: '#F2F2F2',
+    backgroundColor: "#F2F2F2",
     borderTopLeftRadius: 60,
     borderTopRightRadius: 60,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
 
   valuem3: {
-    flexDirection: 'row',
+    flexDirection: "row",
     marginTop: 50,
   },
 
   footer: {
     height: 50,
     borderRadius: 50,
-    alignItems: 'center',
+    alignItems: "center",
   },
 
   txtBox1: {
-    textAlign: 'left',
+    textAlign: "left",
     fontSize: 13,
-    textAlignVertical: 'top',
+    textAlignVertical: "top",
     marginTop: 10,
     width: 300,
     height: 50,
 
-    color: 'white',
-    backgroundColor: 'orange',
-    borderColor: 'transparent',
+    color: "white",
+    backgroundColor: "orange",
+    borderColor: "transparent",
 
     borderRadius: 50,
   },
 
   txtBox2: {
-    textAlign: 'left',
-    textAlignVertical: 'top',
+    textAlign: "left",
+    textAlignVertical: "top",
     fontSize: 13,
-    borderColor: 'orange',
+    borderColor: "orange",
     borderWidth: 2,
     marginTop: 10,
     width: 300,
@@ -216,39 +212,39 @@ const styles = StyleSheet.create({
   },
 
   txtBox3: {
-    textAlign: 'center',
+    textAlign: "center",
     fontSize: 13,
-    textAlignVertical: 'center',
-    borderColor: 'transparent',
+    textAlignVertical: "center",
+    borderColor: "transparent",
     borderWidth: 2,
     marginTop: 10,
     width: 300,
     height: 50,
-    backgroundColor: '#03293A',
-    color: 'white',
+    backgroundColor: "#03293A",
+    color: "white",
     borderRadius: 50,
   },
 
   txtLeitura: {
-    color: '#fff',
+    color: "#fff",
     fontSize: 18,
-    textAlign: 'center',
+    textAlign: "center",
   },
 
   billText: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
     fontSize: 15,
-    color: '#fff',
+    color: "#fff",
   },
 
   billText2: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
     fontSize: 15,
-    color: '#fff',
+    color: "#fff",
   },
 
   btnLeitura: {
-    backgroundColor: '#FFA21A',
+    backgroundColor: "#FFA21A",
     height: 56,
     width: 154,
     padding: 8,
@@ -256,41 +252,41 @@ const styles = StyleSheet.create({
 
     marginTop: 18,
     borderRadius: 30,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
 
   agendaIMG: {
-    justifyContent: 'flex-end',
-    flexDirection: 'row',
-    position: 'absolute',
+    justifyContent: "flex-end",
+    flexDirection: "row",
+    position: "absolute",
     right: 80,
   },
 
   settingsIMG: {
-    justifyContent: 'flex-end',
-    flexDirection: 'row',
-    position: 'absolute',
+    justifyContent: "flex-end",
+    flexDirection: "row",
+    position: "absolute",
     right: 30,
   },
 
   alt: {
-    flexDirection: 'row',
-    color: '#fff',
-    justifyContent: 'space-evenly',
-    backgroundColor: '#03293A',
+    flexDirection: "row",
+    color: "#fff",
+    justifyContent: "space-evenly",
+    backgroundColor: "#03293A",
     padding: 15,
     width: 200,
     height: 50,
-    borderColor: '#FFA21A',
+    borderColor: "#FFA21A",
     borderRadius: 10,
     borderWidth: 1,
   },
   alt2: {
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    backgroundColor: '#FFA21A',
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    backgroundColor: "#FFA21A",
     padding: 15,
     borderRadius: 10,
     width: 100,
@@ -299,26 +295,26 @@ const styles = StyleSheet.create({
 
   footerItems: {
     marginTop: 18,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
 
-    position: 'absolute',
+    position: "absolute",
     right: 0,
     width: 15,
     height: 25,
   },
 
   gota1: {
-    position: 'absolute',
+    position: "absolute",
     left: 0,
     bottom: 0,
     opacity: 0.2,
   },
 
   imgGotas: {
-    position: 'absolute',
-    justifyContent: 'space-evenly',
+    position: "absolute",
+    justifyContent: "space-evenly",
     bottom: 0,
     right: 0,
   },

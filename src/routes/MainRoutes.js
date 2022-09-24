@@ -2,6 +2,7 @@ import React from "react";
 import DataCollection from "../screens/DataCollection";
 import DetailClient from "../screens/DetailClient";
 import AdminDash from "../screens/AdminDash";
+import SearchFile from "../screens/SearchFile";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 const MainRoutes = () => {
@@ -22,6 +23,11 @@ const MainRoutes = () => {
         name="DetailClient"
         options={{ headerShown: false }}
         component={DetailClient}
+      />
+      <Stack.Screen
+        name="SearchFile"
+        options={{ headerShown: false }}
+        component={SearchFile}
       />
     </Stack.Navigator>
   );
