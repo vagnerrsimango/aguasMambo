@@ -11,6 +11,7 @@ import { useNavigation } from "@react-navigation/native";
 import { UserContext } from "../services/Context";
 import Progress from "./comp/Progress";
 import api from "../services/api";
+import { updateReadingData } from "../controller/Clients.controller";
 
 const DetailClient = ({ route }) => {
   const [client, setClient] = useState(route.params.item);
@@ -29,15 +30,21 @@ const DetailClient = ({ route }) => {
     const previous = client.no_metros_cubicos;
     const sum = Number(leitura) + Number(previous);
 
-    const response = await api.put(
-      `clients/update?value=${sum}&client=${client.contador_id}`
+    // const response = await api.put(
+    //   `clients/update?value=${sum}&client=${client.contador_id}`
+    // );
+    const response = await updateReadingData(
+      sum,
+      client.contador_id,
+      (result) => {
+        if (result) {
+          setLoading(false);
+          setLeituraActual(sum);
+          alert("Actualizado com sucesso");
+          // retornar();
+        }
+      }
     );
-    setLoading(false);
-    if (response.data.status) {
-      setLeituraActual(sum);
-      alert("Actualizado com sucesso");
-      // return to ...
-    }
   };
   const addLeituraM3 = (add) => {
     const leitura = setLeitura(add);

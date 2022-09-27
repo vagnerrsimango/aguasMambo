@@ -20,3 +20,17 @@ export const readData = async (key) => {
     return error;
   }
 };
+
+export const updateData = async (key, value, id) => {
+  try {
+    const data = await AsyncStorage.getItem(key);
+    let index = data.findIndex((item) => item.id === id);
+    data[index].id = value;
+
+    await AsyncStorage.setItem(key, JSON.stringify(data));
+
+    cb(true);
+  } catch (error) {
+    cb(error);
+  }
+};

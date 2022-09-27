@@ -24,6 +24,8 @@ const DataCollection = (props) => {
       setAuxClients(response);
     }
     getZone();
+
+    return () => {};
   }, []);
   const navigation = useNavigation();
 
