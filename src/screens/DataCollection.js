@@ -1,38 +1,28 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  FlatList,
-  ScrollView,
-} from "react-native";
+import { StyleSheet, View, Image, FlatList, ScrollView } from "react-native";
 import React, { useEffect, useState, useContext } from "react";
 import Header from "../screens/comp/Header";
 import Client from "../components/Client";
 import { useNavigation } from "@react-navigation/native";
 import { UserContext } from "../services/Context";
-import api from "../services/api";
 import { getOfflineClients } from "../controller/Clients.controller";
+import SearchBar from "./comp/SearchBar";
+import { filterByValue } from "../services/utill";
 
 const DataCollection = (props) => {
   const [clients, setClients] = useState([]);
+  const [auxclients, setAuxClients] = useState([]);
   const { user, setUser } = useContext(UserContext);
   const [zone, setZone] = useState(props.route.params.item);
+  const [isSearching, setSearching] = useState(false);
+  const [filter, setFilter] = useState("");
+  const [clicked, setClicked] = useState(false);
 
   useEffect(() => {
-    //setZone();
-
     async function getZone() {
-      // const response = await api.get('/clients/index', {
-      //   params: {
-      //     zone: zone.name,
-      //   },
-      // });
-
       const response = await getOfflineClients(zone.name);
       setClients(response);
+      setAuxClients(response);
     }
-
     getZone();
   }, []);
   const navigation = useNavigation();
@@ -41,17 +31,47 @@ const DataCollection = (props) => {
     setUser(null);
   };
 
+  const handleFilterChange = (e) => {
+    setFilter(e);
+
+    if (isSearching) {
+      setClients(filterByValue(auxclients, e));
+    } else {
+      setClients(auxclients);
+    }
+  };
+  const handleSearchChange = () => {
+    if (!isSearching) {
+      setSearching(true);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.container2}>
         <ScrollView>
           <View style={styles.header}>
-            <Header
-              txt1={zone.name}
-              txt2={zone.houses}
-              retornar={retornar}
-              navigateTo={() => navigation.navigate("SearchFile", zone)}
-            />
+            {isSearching ? (
+              <SearchBar
+                filter={filter}
+                setFilter={setFilter}
+                clicked={clicked}
+                setClicked={setClicked}
+                cancel={() => {
+                  setFilter("");
+                  setSearching(false);
+                  setClients(auxclients);
+                }}
+                handleFilterChange={handleFilterChange}
+              />
+            ) : (
+              <Header
+                txt1={zone.name}
+                txt2={zone.houses}
+                retornar={retornar}
+                navigateTo={handleSearchChange}
+              />
+            )}
           </View>
           {/* <Client/> */}
           <View style={styles.body}>

@@ -14,27 +14,10 @@ import { UserContext } from "../services/Context";
 import api from "../services/api";
 import { getOfflineClients } from "../controller/Clients.controller";
 
-const SearchFile = (props) => {
-  const [clients, setClients] = useState([]);
+const SearchFile = ({ route }) => {
+  const [clients, setClients] = useState(route.params.clients);
   const { user, setUser } = useContext(UserContext);
-  const [zone, setZone] = useState(props.route.params.item);
 
-  useEffect(() => {
-    //setZone();
-
-    async function getZone() {
-      // const response = await api.get('/clients/index', {
-      //   params: {
-      //     zone: zone.name,
-      //   },
-      // });
-
-      const response = await getOfflineClients(zone.name);
-      setClients(response);
-    }
-
-    getZone();
-  }, []);
   const navigation = useNavigation();
 
   const retornar = () => {
@@ -46,12 +29,7 @@ const SearchFile = (props) => {
       <View style={styles.container2}>
         <ScrollView>
           <View style={styles.header}>
-            <Header
-              txt1={zone.name}
-              txt2={zone.houses}
-              retornar={retornar}
-              navigateTo={() => navigation.navigate("SearchFile", zone)}
-            />
+            <Header navigateTo={() => navigation.goBack()} />
           </View>
           {/* <Client/> */}
           <View style={styles.body}>
