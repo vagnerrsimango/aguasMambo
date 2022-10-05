@@ -4,6 +4,7 @@ import {
   View,
   TextInput,
   TouchableOpacity,
+  KeyboardAvoidingView,
 } from "react-native";
 import React, { useContext, useState } from "react";
 import Header from "./comp/Header";
@@ -16,7 +17,6 @@ import { updateReadingData } from "../controller/Clients.controller";
 const DetailClient = ({ route }) => {
   const [client, setClient] = useState(route.params.item);
   const [leitura, setLeitura] = useState(0);
-
   const [leituraActual, setLeituraActual] = useState(
     route.params.item.no_metros_cubicos
   );
@@ -29,10 +29,6 @@ const DetailClient = ({ route }) => {
     setLoading(true);
     const previous = client.no_metros_cubicos;
     const sum = Number(leitura) + Number(previous);
-
-    // const response = await api.put(
-    //   `clients/update?value=${sum}&client=${client.contador_id}`
-    // );
     const response = await updateReadingData(
       sum,
       client.contador_id,
@@ -41,7 +37,6 @@ const DetailClient = ({ route }) => {
           setLoading(false);
           setLeituraActual(sum);
           alert("Actualizado com sucesso");
-          // retornar();
         }
       }
     );
@@ -79,7 +74,7 @@ const DetailClient = ({ route }) => {
         <Header txt1="Detalhes" txt2={client.cliente_id} retornar={retornar} />
       </View>
 
-      <View style={styles.body}>
+      <KeyboardAvoidingView style={styles.body} behavior="height">
         <TextInput
           style={styles.txtBox1}
           value={client.nome}
@@ -143,7 +138,7 @@ const DetailClient = ({ route }) => {
             onChangeText={addLeituraMT}
           ></TextInput>
         ) : null}
-      </View>
+      </KeyboardAvoidingView>
 
       <View style={styles.footer}>
         <TouchableOpacity style={styles.btnLeitura} onPress={verLeitura}>
@@ -191,30 +186,29 @@ const styles = StyleSheet.create({
   },
 
   txtBox1: {
-    textAlign: "left",
+    textAlign: "center",
     fontSize: 13,
-    textAlignVertical: "top",
+    textAlignVertical: "center",
     marginTop: 10,
     width: 300,
     height: 50,
-
     color: "white",
     backgroundColor: "orange",
     borderColor: "transparent",
-
     borderRadius: 50,
   },
 
   txtBox2: {
-    textAlign: "left",
-    textAlignVertical: "top",
+    textAlign: "center",
     fontSize: 13,
+    textAlignVertical: "center",
     borderColor: "orange",
     borderWidth: 2,
     marginTop: 10,
+
     width: 300,
     height: 50,
-
+    color: "black",
     borderRadius: 50,
   },
 
