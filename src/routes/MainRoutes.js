@@ -2,6 +2,7 @@ import React from "react";
 import DataCollection from "../screens/DataCollection";
 import DetailClient from "../screens/DetailClient";
 import AdminDash from "../screens/AdminDash";
+import AdminStart from "../screens/AdminStart";
 import SearchFile from "../screens/SearchFile";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
@@ -13,6 +14,11 @@ const MainRoutes = () => {
         name="AdminDash"
         options={{ headerShown: false }}
         component={AdminDash}
+      />
+      <Stack.Screen
+        name="AdminStart"
+        options={{ headerShown: false }}
+        component={AdminStart}
       />
       <Stack.Screen
         name="DataCollection"

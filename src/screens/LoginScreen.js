@@ -8,13 +8,13 @@ import {
   TouchableOpacity,
   Animated,
 } from "react-native";
-
 import React, { useState, useEffect, useContext } from "react";
 import call from "react-native-phone-call";
 import ProgressDialog from "react-native-progress-dialog";
 import { useNavigation } from "@react-navigation/native";
 import { loginOffine, loginValidator } from "../controller/AuthController";
 import { UserContext } from "../services/Context";
+import Icon from "react-native-vector-icons/MaterialIcons";
 
 const LoginScreen = () => {
   const navigation = useNavigation();
@@ -80,6 +80,15 @@ const LoginScreen = () => {
           marginTop: margem,
         }}
       >
+        <TouchableOpacity
+          style={styles.btnAdmin}
+          onPress={() => {
+            navigation.navigate("UpdateScreen");
+          }}
+        >
+          <Icon name="sync" size={30} color="#ACDAEF" />
+        </TouchableOpacity>
+
         <Image style={styles.img} source={require("../img/logoshadow.png")} />
       </Animated.View>
 
@@ -120,6 +129,16 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   containerLogo: {},
+
+  btnAdmin: {
+    position: "absolute",
+    bottom: 220,
+    left: 150,
+  },
+
+  btnText: {
+    color: "grey",
+  },
 
   img: {
     width: 120,
