@@ -42,3 +42,8 @@ export const loginOffine = async (username) => {
   const user = users.find((user) => user.username === username);
   return user;
 };
+
+export const clientOffline = async () => {
+  const { clients } = await readData("@local");
+  return clients;
+};

@@ -10,15 +10,22 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import { getAllData } from "../controller/AuthController";
+import { clientOffline, getAllData } from "../controller/AuthController";
 import { storeData } from "../services/localstorage";
 
 const UpdateScreen = () => {
   const [loading, setLoading] = useState("Atualização dos dados");
   const navigation = useNavigation();
   const [inputIp, setInputIp] = useState("192.168.1.1");
-  const handleUpload = () => {
-    alert("Its up!");
+
+  const handleUpload = async () => {
+    clientOffline()
+      .then((res) =>
+        res.forEach((element) => {
+          console.log(element.cliente_id);
+        })
+      )
+      .catch((err) => console.error(err));
   };
 
   const handleDownload = () => {
