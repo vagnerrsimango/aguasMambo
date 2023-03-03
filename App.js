@@ -11,19 +11,7 @@ import AuthProvider from "./src/services/AuthProvider";
 import { storeData } from "./src/services/localstorage";
 
 export default function App() {
-  let [loaded, setLoaded] = useState(false);
-
-  getAllData()
-    .then((data) => {
-      storeData("@local", data, (result) => {
-        if (result === true) {
-          setLoaded(true);
-        } else {
-          console.log("error storing data=>", result);
-        }
-      });
-    })
-    .catch((err) => console.error(err));
+  let [loaded, setLoaded] = useState(true);
 
   let [fontLoaded] = useFonts({
     Roboto_100Thin,

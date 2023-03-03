@@ -5,28 +5,32 @@ export function loginValidator(username) {
   return username.length > 0 ? true : false;
 }
 
-export const getAllUsers = async () => {
-  const response = await api.get("users/index");
+export const getAllUsers = async (ip) => {
+  console.log("🚀 ~ file: AuthController.js:9 ~ getAllUsers ~ ip:", ip);
+  const baseurl = `http://${ip}:3333/`;
+  const response = await api.get(baseurl + "users/index");
 
   return response.data;
 };
 
-export const getAllZones = async () => {
-  const response = await api.get("zones/index");
+export const getAllZones = async (ip) => {
+  const baseurl = `http://${ip}:3333/`;
+  const response = await api.get(baseurl + "zones/index");
 
   return response.data;
 };
-export const getAllClients = async () => {
-  const response = await api.get("clients/index");
+export const getAllClients = async (ip) => {
+  const baseurl = `http://${ip}:3333/`;
+  const response = await api.get(baseurl + "clients/index");
 
   return response.data;
 };
 
-export const getAllData = async () => {
+export const getAllData = async (ip) => {
   const [users, zones, clients] = await Promise.all([
-    getAllUsers(),
-    getAllZones(),
-    getAllClients(),
+    getAllUsers(ip),
+    getAllZones(ip),
+    getAllClients(ip),
   ]);
 
   return { users, zones, clients };
