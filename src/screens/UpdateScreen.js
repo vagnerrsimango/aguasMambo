@@ -12,6 +12,7 @@ import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { clientOffline, getAllData } from "../controller/AuthController";
 import { storeData } from "../services/localstorage";
+import api from "../services/api";
 
 const UpdateScreen = () => {
   const [loading, setLoading] = useState("Atualização dos dados");
@@ -19,12 +20,14 @@ const UpdateScreen = () => {
   const [inputIp, setInputIp] = useState("192.168.1.1");
 
   const handleUpload = async () => {
+    const baseurl = `http://${inputIp}:3333/`;
     clientOffline()
-      .then((res) =>
+      .then(async (res) => {
+        await api.put(baseurl + "clients/upload", { data: 5 });
         res.forEach((element) => {
           console.log(element.cliente_id);
-        })
-      )
+        });
+      })
       .catch((err) => console.error(err));
   };
 
