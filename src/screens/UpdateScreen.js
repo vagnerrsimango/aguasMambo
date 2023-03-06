@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -13,11 +13,21 @@ import Icon from "react-native-vector-icons/MaterialIcons";
 import { clientOffline, getAllData } from "../controller/AuthController";
 import { storeData } from "../services/localstorage";
 import api from "../services/api";
+import ProgressDialog from "react-native-progress-dialog";
+
+import { getIpAdress } from "../services/Network";
 
 const UpdateScreen = () => {
-  const [loading, setLoading] = useState("Atualização dos dados");
+  const [loading, setLoading] = useState(false);
+  const [loadingLabel, setLoadingLabel] = useState("");
   const navigation = useNavigation();
   const [inputIp, setInputIp] = useState("192.168.1.1");
+
+  useEffect(() => {
+    getIpAdress((ip) => {
+      setInputIp(ip);
+    });
+  }, [inputIp]);
 
   const handleUpload = async () => {
     const baseurl = `http://${inputIp}:3333/`;
@@ -32,20 +42,27 @@ const UpdateScreen = () => {
   };
 
   const handleDownload = () => {
-    setLoading("Estabelecendo conexão");
+    setLoading(true);
+    setLoadingLabel("Verificando ip...");
     getAllData(inputIp)
       .then((data) => {
-        setLoading("Conexão estabelecida");
+        setLoadingLabel("Conexão estabelecida");
         storeData("@local", data, (result) => {
           if (result === true) {
-            setLoading("Sincronizado com sucesso");
+            setLoadingLabel("Sincronizado com sucesso");
+            setLoading(false);
+            alert("Descarregamento finalizado com sucesso");
           } else {
             console.log("error storing data=>", result);
-            setLoading("Falha na conexão");
+            setLoadingLabel("Falha na conexão");
           }
         });
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        setLoading(false);
+        alert("Falha de conexão: " + err.message);
+        console.error(err);
+      });
   };
 
   const retornar = () => {
@@ -55,6 +72,11 @@ const UpdateScreen = () => {
 
   return (
     <View style={styles.container}>
+      <ProgressDialog
+        visible={loading}
+        label={loadingLabel}
+        loaderColor="#FF9800"
+      />
       <TouchableOpacity onPress={() => Alert("sdhsdhsdh")}>
         <Icon
           style={styles.back}
@@ -67,7 +89,7 @@ const UpdateScreen = () => {
 
       <Image style={styles.img} source={require("../img/logoshadow.png")} />
 
-      <Text style={styles.subtitle}>{loading}</Text>
+      <Text style={styles.subtitle}>Sincronização de dados</Text>
 
       <TextInput
         style={styles.input}
